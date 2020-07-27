@@ -15,3 +15,6 @@ cp -r ~/.config/sxhkd/ ${gitDirectory}/pc/home_pc/config/
 
 cp ~/.tmux.conf ${gitDirectory}/pc/home_pc/tmux
 cp ~/.zshrc ${gitDirectory}/pc/home_pc/zsh
+
+yay -Qq > ${gitDirectory}/pc/home_pc/gloriousArchPackages.txt
+yay -Qe > ${gitDirectory}/pc/home_pc/gloriousUserPackages.txt
