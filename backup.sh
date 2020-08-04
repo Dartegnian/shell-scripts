@@ -18,3 +18,5 @@ cp ~/.zshrc ${gitDirectory}/pc/home_pc/zsh
 
 yay -Qq > ${gitDirectory}/pc/home_pc/gloriousArchPackages.txt
 yay -Qqe > ${gitDirectory}/pc/home_pc/gloriousUserPackages.txt
+
+npm list -g --depth=0 --parseable=true | sed -n -e 's/^.*node_modules\///p' > ${gitDirectory}/pc/home_pc/npm/globalPackages.txt
