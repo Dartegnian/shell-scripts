@@ -3,10 +3,14 @@
 currentDirectory=$(pwd)
 
 format_output () {
+    local red="\033[0;31m"
     local yellow="\033[1;33m"
     local no_color="\033[0m"
 
     case $1 in
+        red)
+            printf "${red}${2}${no_color}\n"
+            ;;
         yellow)
             printf "${yellow}${2}${no_color}\n"
             ;;
