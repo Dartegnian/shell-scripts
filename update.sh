@@ -97,7 +97,7 @@ process_long_command () {
 update_linux () {
     printf "==> Updating Linux and your packages\n"
     yay -Syu --noconfirm
-    format_output "yellow" "The system now up to date!"
+    format_output "yellow" "The Linux and your packages are now up to date!"
 }
 update_node () {
     if [ -d ~/.nvm ]; then
