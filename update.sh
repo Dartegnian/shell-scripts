@@ -21,10 +21,11 @@ format_output () {
 }
 
 # input processors
-read_command () {
+print_greeting () {
     printf "Which of the following do you want to update, ${USER^}?\n"
     printf "[L]inux [N]ode.js [G]lobalNPMPackages [O]hMyZsh [A]ll [E]xit \n\n"
-
+}
+read_command () {
     read -p "Update: " update_choice
     printf "\n"
     distinguish_command "$update_choice"
@@ -146,8 +147,10 @@ update_nothing () {
 }
 update_not_sure () {
     printf "Ummm... okay, let's do this again.\n"
+    print_greeting
     read_command
 }
 
 # main
+print_greeting
 read_command
