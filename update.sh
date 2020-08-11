@@ -23,7 +23,7 @@ format_output () {
 # input processors
 read_command () {
     printf "Which of the following do you want to update, ${USER^}?\n"
-    printf "[L]inux [G]lobalNPMPackages [O]hMyZsh [A]ll [E]xit \n\n"
+    printf "[L]inux [N]ode.js [G]lobalNPMPackages [O]hMyZsh [A]ll [E]xit \n\n"
 
     read -p "Update: " update_choice
     printf "\n"
@@ -42,6 +42,9 @@ process_short_command () {
     case $1 in
         l)
             update_linux
+            ;;
+        n)
+            update_node
             ;;
         g)
             update_npm_global_packages
@@ -64,6 +67,12 @@ process_long_command () {
     case $1 in
         linux)
             update_linux
+            ;;
+        node)
+            update_node
+            ;;
+        node.js)
+            update_node
             ;;
         npmglobalpackages)
             update_npm_global_packages
@@ -88,6 +97,27 @@ update_linux () {
     printf "==> Updating Linux\n"
     yay -Syu --noconfirm
     format_output "yellow" "The system now up to date!"
+}
+update_node () {
+    if [ -d ~/.nvm ]; then
+        . ~/.nvm/nvm.sh
+        local old_version=$(nvm current | sed -n -e 's/v//p')
+
+        format_output "red" "WARNING: This will uninstall Node ${old_version} but keep your global NPM packages."
+        format_output "red" "WARNING: This also installs the latest non-LTS version of Node.js\n"
+        printf "==> Installing Node.js\n"
+
+        nvm install node
+        nvm alias default node
+        nvm reinstall-packages $old_version
+        nvm uninstall $old_version
+        nvm use default
+    else
+        format_output "red" "Missing package: NVM\n"
+        read_command
+    fi
+    format_output "red" "Node.js version ${old_version} was uninstalled!"
+    format_output "yellow" "The latest version of Node.js was installed!"
 }
 update_npm_global_packages () {
     printf "==> Updating your NPM global packages...\n"
