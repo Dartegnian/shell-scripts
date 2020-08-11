@@ -104,9 +104,9 @@ update_node () {
         . ~/.nvm/nvm.sh
         local old_version=$(nvm current | sed -n -e 's/v//p')
 
+        printf "==> Installing the latest version of Node.js\n"
         format_output "red" "WARNING: This will uninstall Node ${old_version} but keep your global NPM packages."
         format_output "red" "WARNING: This also installs the a non-LTS version of Node.js."
-        printf "==> Installing the latest version of Node.js\n"
 
         nvm install node
         nvm alias default node
@@ -136,11 +136,14 @@ update_everything () {
     format_output "yellow" "==> Updating entire system"
 
     update_linux
+    printf "\n"
     update_node
+    printf "\n"
     update_npm_global_packages
+    printf "\n"
     update_oh_my_zsh
     
-    format_output "yellow" "The entire system is up-to-date!"
+    format_output "yellow" "\nThe entire system is up-to-date!"
 }
 update_nothing () {
     printf "Bye bye!\n"
