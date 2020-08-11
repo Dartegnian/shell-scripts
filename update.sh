@@ -105,8 +105,8 @@ update_node () {
         local old_version=$(nvm current | sed -n -e 's/v//p')
 
         format_output "red" "WARNING: This will uninstall Node ${old_version} but keep your global NPM packages."
-        format_output "red" "WARNING: This also installs the latest non-LTS version of Node.js\n"
-        printf "==> Installing Node.js\n"
+        format_output "red" "WARNING: This also installs the a non-LTS version of Node.js."
+        printf "==> Installing the latest version of Node.js\n"
 
         nvm install node
         nvm alias default node
@@ -117,7 +117,7 @@ update_node () {
         format_output "red" "Missing package: NVM\n"
         read_command
     fi
-    format_output "red" "Node.js version ${old_version} was uninstalled!"
+    format_output "red" "WARNING: Node.js version ${old_version} was uninstalled!"
     format_output "yellow" "The latest version of Node.js was installed!"
 }
 update_npm_global_packages () {
@@ -133,7 +133,7 @@ update_oh_my_zsh () {
     format_output "yellow" "Oh My Zsh has been fast-forwarded to the latest commit!"
 }
 update_everything () {
-    printf "==> Updating entire system\n"
+    format_output "yellow" "==> Updating entire system"
 
     update_linux
     update_node
