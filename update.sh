@@ -95,7 +95,7 @@ process_long_command () {
 
 # updaters
 update_linux () {
-    printf "==> Updating Linux\n"
+    printf "==> Updating Linux and your packages\n"
     yay -Syu --noconfirm
     format_output "yellow" "The system now up to date!"
 }
@@ -106,7 +106,7 @@ update_node () {
 
         printf "==> Installing the latest version of Node.js\n"
         format_output "red" "WARNING: This will uninstall Node ${old_version} but keep your global NPM packages."
-        format_output "red" "WARNING: This also installs the a non-LTS version of Node.js."
+        format_output "red" "WARNING: This also installs the a non-LTS version of Node.js.\n"
 
         nvm install node
         nvm alias default node
@@ -121,7 +121,7 @@ update_node () {
     format_output "yellow" "The latest version of Node.js was installed!"
 }
 update_npm_global_packages () {
-    printf "==> Updating your NPM global packages...\n"
+    printf "==> Updating your NPM global packages\n"
     npm update -g
     format_output "yellow" "Packages updated!"
 }
