@@ -8,7 +8,7 @@ format_output () {
 
     case $1 in
         yellow)
-            printf "${yellow}${2}\n"
+            printf "${yellow}${2}${no_color}\n"
             ;;
         *)
             printf "Unsupported color.\n"    
