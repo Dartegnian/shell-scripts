@@ -136,6 +136,7 @@ update_everything () {
     printf "==> Updating entire system\n"
 
     update_linux
+    update_node
     update_npm_global_packages
     update_oh_my_zsh
     
