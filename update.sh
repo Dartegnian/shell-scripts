@@ -21,7 +21,7 @@ format_output () {
 # input processors
 print_greeting () {
     printf "Which of the following do you want to update, ${USER^}?\n"
-    printf "Hint: Typing the highlighted letters below or the words themselves both work.\n"
+    printf "Hint: Either type the highlighted letters below or the words themselves.\n"
     printf "GNU/[L]inux [N]ode.js [G]lobalNPMPackages [O]hMyZsh [A]ll [E]xit\n\n"
 }
 read_command () {
