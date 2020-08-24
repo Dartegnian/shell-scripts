@@ -71,6 +71,9 @@ process_long_command () {
         node)
             update_node
             ;;
+        nodejs)
+            update_node
+            ;;
         node.js)
             update_node
             ;;
