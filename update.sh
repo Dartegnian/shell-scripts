@@ -1,7 +1,5 @@
 #! /bin/sh
 
-currentDirectory=$(pwd)
-
 format_output () {
     local red="\033[0;31m"
     local yellow="\033[1;33m"
@@ -126,10 +124,11 @@ update_npm_global_packages () {
     format_output "yellow" "Packages updated!"
 }
 update_oh_my_zsh () {
+    current_directory=$(pwd)
     printf "==> Updating Oh My Zsh\n"
     cd ~/.oh-my-zsh
     git pull --ff-only
-    cd $currentDirectory
+    cd $current_directory
     format_output "yellow" "Oh My Zsh has been fast-forwarded to the latest commit!"
 }
 update_everything () {
