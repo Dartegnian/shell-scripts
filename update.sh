@@ -22,7 +22,7 @@ format_output () {
 print_greeting () {
     printf "Which of the following do you want to update, ${USER^}?\n"
     printf "Hint: Typing the highlighted letters below or the words themselves both work.\n"
-    printf "[L]inux [N]ode.js [G]lobalNPMPackages [O]hMyZsh [A]ll [E]xit\n\n"
+    printf "GNU/[L]inux [N]ode.js [G]lobalNPMPackages [O]hMyZsh [A]ll [E]xit\n\n"
 }
 read_command () {
     read -p "Update: " update_choice
@@ -41,7 +41,7 @@ distinguish_command() {
 process_short_command () {
     case $1 in
         l)
-            update_linux
+            update_gnulinux
             ;;
         n)
             update_node
@@ -66,7 +66,7 @@ process_short_command () {
 process_long_command () {
     case $1 in
         linux)
-            update_linux
+            update_gnulinux
             ;;
         node)
             update_node
@@ -96,7 +96,7 @@ process_long_command () {
 }
 
 # updaters
-update_linux () {
+update_gnulinux () {
     printf "==> Updating Linux and your packages\n"
     yay -Syu --noconfirm
     format_output "yellow" "Linux and your packages are now up to date!"
@@ -138,7 +138,7 @@ update_oh_my_zsh () {
 update_everything () {
     format_output "yellow" "==> Updating entire system"
 
-    update_linux
+    update_gnulinux
     printf "\n"
     update_node
     printf "\n"
