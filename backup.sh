@@ -1,24 +1,24 @@
 #! /bin/sh
 
-gitDirectory="/home/${USER}/SYGtech/git_gtech/darts-dots"
+git_directory="/home/${USER}/SYGtech/git_gtech/darts-dots"
 
-cp -r ~/.config/alacritty/ ${gitDirectory}/pc/home_pc/config/
-cp -r  ~/.config/bspwm/ ${gitDirectory}/pc/home_pc/config/
-cp -r ~/.config/cava/ ${gitDirectory}/pc/home_pc/config/
-cp -r ~/.config/ckb-next/ ${gitDirectory}/pc/home_pc/config/
-cp -r ~/.config/compton/ ${gitDirectory}/pc/home_pc/config/
-cp -r ~/.config/mpd/ ${gitDirectory}/pc/home_pc/config/
-cp -r ~/.config/nomacs/ ${gitDirectory}/pc/home_pc/config/
-cp -r ~/.config/polybar/ ${gitDirectory}/pc/home_pc/config/
-cp -r ~/.config/rofi/ ${gitDirectory}/pc/home_pc/config/
-cp -r ~/.config/sxhkd/ ${gitDirectory}/pc/home_pc/config/
+cp -r ~/.config/alacritty/ ${git_directory}/pc/home_pc/config/
+cp -r  ~/.config/bspwm/ ${git_directory}/pc/home_pc/config/
+cp -r ~/.config/cava/ ${git_directory}/pc/home_pc/config/
+cp -r ~/.config/ckb-next/ ${git_directory}/pc/home_pc/config/
+cp -r ~/.config/compton/ ${git_directory}/pc/home_pc/config/
+cp -r ~/.config/mpd/ ${git_directory}/pc/home_pc/config/
+cp -r ~/.config/nomacs/ ${git_directory}/pc/home_pc/config/
+cp -r ~/.config/polybar/ ${git_directory}/pc/home_pc/config/
+cp -r ~/.config/rofi/ ${git_directory}/pc/home_pc/config/
+cp -r ~/.config/sxhkd/ ${git_directory}/pc/home_pc/config/
 
-cp ~/.tmux.conf ${gitDirectory}/pc/home_pc/tmux
-cp ~/.zshrc ${gitDirectory}/pc/home_pc/zsh
-cp /etc/X11/xorg.conf ${gitDirectory}/pc/home_pc/X.Org/
-cp /etc/pulse/daemon.conf ${gitDirectory}/pc/home_pc/pulseaudio
+cp ~/.tmux.conf ${git_directory}/pc/home_pc/tmux
+cp ~/.zshrc ${git_directory}/pc/home_pc/zsh
+cp /etc/X11/xorg.conf ${git_directory}/pc/home_pc/X.Org/
+cp /etc/pulse/daemon.conf ${git_directory}/pc/home_pc/pulseaudio
 
-yay -Qq > ${gitDirectory}/pc/home_pc/gloriousArchPackages.txt
-yay -Qqe > ${gitDirectory}/pc/home_pc/gloriousUserPackages.txt
+yay -Qq > ${git_directory}/pc/home_pc/gloriousArchPackages.txt
+yay -Qqe > ${git_directory}/pc/home_pc/gloriousUserPackages.txt
 
-npm list -g --depth=0 --parseable=true | sed -n -e 's/^.*node_modules\///p' > ${gitDirectory}/pc/home_pc/npm/globalPackages.txt
+npm list -g --depth=0 --parseable=true | sed -n -e 's/^.*node_modules\///p' > ${git_directory}/pc/home_pc/npm/globalPackages.txt
