@@ -17,6 +17,8 @@ cp ~/.tmux.conf ${git_directory}/pc/home_pc/tmux
 cp ~/.zshrc ${git_directory}/pc/home_pc/zsh
 cp /etc/X11/xorg.conf ${git_directory}/pc/home_pc/X.Org/
 cp /etc/pulse/daemon.conf ${git_directory}/pc/home_pc/pulseaudio
+cp /etc/asound.conf ${git_directory}/pc/home_pc/pulseaudio
+cp ~/.asoundrc/asound.conf ${git_directory}/pc/home_pc/pulseaudio
 
 yay -Qq > ${git_directory}/pc/home_pc/gloriousArchPackages.txt
 yay -Qqe > ${git_directory}/pc/home_pc/gloriousUserPackages.txt
