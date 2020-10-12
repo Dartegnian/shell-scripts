@@ -149,7 +149,8 @@ update_everything () {
     format_output "yellow" "\nThe entire system is up-to-date!"
 }
 update_nothing () {
-    printf "Bye bye!\n"
+    printf "Cancelling update process.\n"
+    printf "No changes to the system was made."
     exit 1
 }
 update_not_sure () {
