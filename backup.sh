@@ -9,7 +9,7 @@ cp -r ~/.config/ckb-next/ ${git_directory}/pc/home_pc/config/
 cp -r ~/.config/compton/ ${git_directory}/pc/home_pc/config/
 cp -r ~/.config/mpd/ ${git_directory}/pc/home_pc/config/
 cp -r ~/.config/nomacs/ ${git_directory}/pc/home_pc/config/
-cp -r ~/.config/polybar/ ${git_directory}/pc/home_pc/config/
+rsync -av --exclude=".*" ~/.config/polybar/ ${git_directory}/pc/home_pc/config/polybar/ &> /dev/null
 cp -r ~/.config/rofi/ ${git_directory}/pc/home_pc/config/
 cp -r ~/.config/sxhkd/ ${git_directory}/pc/home_pc/config/
 
