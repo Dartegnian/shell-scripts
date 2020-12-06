@@ -23,6 +23,8 @@ cp ~/.asoundrc/asound.conf ${git_directory}/pc/home_pc/pulseaudio/
 cp /etc/X11/xorg.conf ${git_directory}/pc/home_pc/X.Org/
 cp /etc/pulse/daemon.conf ${git_directory}/pc/home_pc/pulseaudio/
 cp /etc/asound.conf ${git_directory}/pc/home_pc/pulseaudio/
+cp /etc/default/grub ${git_directory}/pc/home_pc/grub/
+cp /etc/mkinitcpio.conf ${git_directory}/pc/home_pc/mkinitcpio/
 
 # GNU/Linux + AUR packages
 yay -Qq > ${git_directory}/pc/home_pc/gloriousArchPackages.txt
