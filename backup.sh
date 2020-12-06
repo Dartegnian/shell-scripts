@@ -15,14 +15,14 @@ cp -r ~/.config/sxhkd/ ${git_directory}/pc/home_pc/config/
 rsync -av --exclude=".*" ~/.config/polybar/ ${git_directory}/pc/home_pc/config/polybar/ &> /dev/null
 
 # Home directory configs
-cp ~/.tmux.conf ${git_directory}/pc/home_pc/tmux
-cp ~/.zshrc ${git_directory}/pc/home_pc/zsh
-cp ~/.asoundrc/asound.conf ${git_directory}/pc/home_pc/pulseaudio
+cp ~/.tmux.conf ${git_directory}/pc/home_pc/tmux/
+cp ~/.zshrc ${git_directory}/pc/home_pc/zsh/
+cp ~/.asoundrc/asound.conf ${git_directory}/pc/home_pc/pulseaudio/
 
 # System-wide configs
 cp /etc/X11/xorg.conf ${git_directory}/pc/home_pc/X.Org/
-cp /etc/pulse/daemon.conf ${git_directory}/pc/home_pc/pulseaudio
-cp /etc/asound.conf ${git_directory}/pc/home_pc/pulseaudio
+cp /etc/pulse/daemon.conf ${git_directory}/pc/home_pc/pulseaudio/
+cp /etc/asound.conf ${git_directory}/pc/home_pc/pulseaudio/
 
 # GNU/Linux + AUR packages
 yay -Qq > ${git_directory}/pc/home_pc/gloriousArchPackages.txt
