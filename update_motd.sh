@@ -7,5 +7,12 @@ print_memory_status () {
 	echo "total real memory         = ${total_memory}"
 	echo "total available memory    = ${available_memory}"
 }
+print_os_info () {
+	os_name=$(uname -o)
+	os_distro=$(uname -n)
+	os_version=$(uname -r | grep -o -P "\d{1,}.\d{1,}.\d{1,}")
+	printf "\n${os_name} System ${os_distro} Rolling Release Version ${os_version}\n"
+}
 
 print_memory_status;
+print_os_info;
