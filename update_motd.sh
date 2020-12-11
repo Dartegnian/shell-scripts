@@ -24,9 +24,16 @@ print_user_login_info () {
 	printf "\nConsole Login: ${username}\n"
 	printf "Password: "
 }
+print_last_login () {
+	local login_date=$(last ${USER} -n 1 | grep -o -P "... ... \d\d ..:..")
+	local terminal_name=$(last $USER -n 1 | grep -o -P "^((?!wtmp).)*$" | awk '{print $2}')
+	echo "Last login: ${login_date} on ${terminal_name}"
+}
+
 
 print_memory_status;
 print_os_info;
 print_welcome_message;
 print_user_login_info;
 print_os_info;
+print_last_login;
