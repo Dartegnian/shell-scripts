@@ -1,2 +1,2 @@
-# -nix-shell-scripts
+# *nix Shell Scripts
 Shell scripts for Unix-based systems.
