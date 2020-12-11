@@ -13,6 +13,13 @@ print_os_info () {
 	local os_version=$(uname -r | grep -o -P "\d{1,}.\d{1,}.\d{1,}")
 	printf "\n${os_name} System ${os_distro} Rolling Release Version ${os_version}\n"
 }
+print_welcome_message () {
+	local os_name=$(uname -o)
+	local host_name=$(hostname)
+	printf "\nWelcome to the ${os_name} System\n"
+	printf "System name: ${host_name}\n"
+}
 
 print_memory_status;
 print_os_info;
+print_welcome_message;
