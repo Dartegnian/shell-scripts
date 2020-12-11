@@ -8,9 +8,9 @@ print_memory_status () {
 	echo "total available memory    = ${available_memory}"
 }
 print_os_info () {
-	os_name=$(uname -o)
-	os_distro=$(uname -n)
-	os_version=$(uname -r | grep -o -P "\d{1,}.\d{1,}.\d{1,}")
+	local os_name=$(uname -o)
+	local os_distro=$(uname -n)
+	local os_version=$(uname -r | grep -o -P "\d{1,}.\d{1,}.\d{1,}")
 	printf "\n${os_name} System ${os_distro} Rolling Release Version ${os_version}\n"
 }
 
