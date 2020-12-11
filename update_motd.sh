@@ -19,7 +19,14 @@ print_welcome_message () {
 	printf "\nWelcome to the ${os_name} System\n"
 	printf "System name: ${host_name}\n"
 }
+print_user_login_info () {
+	local username=${USER}
+	printf "\nConsole Login: ${username}\n"
+	printf "Password: "
+}
 
 print_memory_status;
 print_os_info;
 print_welcome_message;
+print_user_login_info;
+print_os_info;
