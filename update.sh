@@ -98,7 +98,7 @@ process_long_command () {
 # updaters
 update_gnulinux () {
     printf "==> Updating GNU/Linux and your packages\n"
-    yay -Syu --noconfirm
+    paru -Syu --noconfirm
     format_output "yellow" "Your GNU/Linux system and packages are now up to date!"
 }
 update_node () {

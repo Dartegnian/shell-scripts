@@ -27,8 +27,8 @@ cp /etc/default/grub ${git_directory}/pc/home_pc/grub/
 cp /etc/mkinitcpio.conf ${git_directory}/pc/home_pc/mkinitcpio/
 
 # GNU/Linux + AUR packages
-yay -Qq > ${git_directory}/pc/home_pc/gloriousArchPackages.txt
-yay -Qqe > ${git_directory}/pc/home_pc/gloriousUserPackages.txt
+paru -Qq > ${git_directory}/pc/home_pc/gloriousArchPackages.txt
+paru -Qqe > ${git_directory}/pc/home_pc/gloriousUserPackages.txt
 
 # NPM packages
 npm list -g --depth=0 --parseable=true | sed -n -e 's/^.*node_modules\///p' > ${git_directory}/pc/home_pc/npm/globalPackages.txt
