@@ -20,8 +20,7 @@ print_welcome_message () {
 	printf "System name: ${host_name}\n"
 }
 print_user_login_info () {
-	local username=${USER}
-	printf "\nConsole Login: ${username}\n"
+	printf "\nConsole Login: ${USER}\n"
 	printf "Password: "
 }
 print_last_login () {
