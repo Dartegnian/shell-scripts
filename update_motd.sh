@@ -24,9 +24,9 @@ print_user_login_info () {
 	printf "Password: "
 }
 print_last_login () {
-	local login_date=$(last ${USER} -n 1 | grep -o -P "... ... \d\d ..:..")
+	local login_date=$(last ${USER} -n 1 | grep -o -P "[^begins] ... ...  *. ..:.." | tr -s " ")
 	local terminal_name=$(last $USER -n 1 | grep -o -P "^((?!wtmp).)*$" | awk '{print $2}')
-	echo "Last login: ${login_date} on ${terminal_name}"
+	echo "Last login:${login_date} on ${terminal_name}"
 }
 
 
