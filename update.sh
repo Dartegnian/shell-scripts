@@ -102,8 +102,8 @@ update_gnulinux () {
     format_output "yellow" "Your GNU/Linux system and packages are now up to date!"
 }
 update_node () {
-    if [ -d ~/.nvm ]; then
-        . ~/.nvm/nvm.sh
+    if [ -d /usr/share/nvm/ ]; then
+        . /usr/share/nvm/nvm.sh
         local old_version=$(nvm current | sed -n -e 's/v//p')
 
         printf "==> Installing the latest version of Node.js\n"
@@ -130,7 +130,7 @@ update_npm_global_packages () {
 update_oh_my_zsh () {
     current_directory=$(pwd)
     printf "==> Updating Oh My Zsh\n"
-    cd ~/.oh-my-zsh
+    cd $XDG_DATA_HOME/oh-my-zsh
     git pull --ff-only
     cd $current_directory
     format_output "yellow" "Oh My Zsh has been fast-forwarded to the latest commit!"
