@@ -16,7 +16,7 @@ cp -r ~/.config/sxhkd/ ${git_directory}/pc/home_pc/config/
 rsync -av --exclude=".*" ~/.config/polybar/ ${git_directory}/pc/home_pc/config/polybar/ &> /dev/null
 
 # Home directory configs
-cp ~/.tmux.conf ${git_directory}/pc/home_pc/config/tmux/
+cp ~/.tmux.conf ${git_directory}/pc/home_pc/config/tmux/tmux.conf
 cp ~/.zshrc ${git_directory}/pc/home_pc/zsh/
 cp $XDG_CONFIG_HOME/alsa/asoundrc/asound.conf ${git_directory}/pc/home_pc/pulseaudio/
 
