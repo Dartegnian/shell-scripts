@@ -21,6 +21,21 @@ set_source_mute_status () {
 	else 
 		$(pactl set-source-mute $2 true)
 	fi
+
+	send_desktop_notification $1 $2
+}
+send_desktop_notification () {
+	local mute_action_type=""
+	local mic_description=$(pactl list sources | grep -C 1 $2 | sed 's/Description\: //g' | sed -E -e 's/Analog Stereo|Digital Stereo//g' | tail -n 1 | xargs)
+
+	if [ $1 == "yes" ]; then
+		mute_action_type="unmuted"
+	else 
+		mute_action_type="muted"
+	fi
+
+	printf "${mic_description}\n"
+	$(notify-send "Your microphone was ${mute_action_type}" "The device ${mic_description} was ${mute_action_type}")
 }
 
 query_pulseaudio
