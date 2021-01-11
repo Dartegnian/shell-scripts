@@ -9,6 +9,9 @@ State-of-the-art, performant, Excel-spreadsheet-driven script to backup all my p
 ### GAME MODE™
 GAME MODE `ON`/`OFF` turns on GAME MODE™ for my Linux system.
 
+### Microphone toggler
+Toggles between muting and unmuting the default microphone source in PulseAudio and shows a desktop notification.
+
 ### MOTD updater
 Configures the MOTD in my Linux system to mimic that of the startup messages in AT&T Unix System V because it looks cool.
 
