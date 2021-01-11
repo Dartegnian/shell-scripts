@@ -1,5 +1,5 @@
 # *nix Shell Scripts
-Shell scripts for Unix-based systems.
+Shell scripts for Unix-based systems, mostly for Linux.
 
 ## What's inside
 
