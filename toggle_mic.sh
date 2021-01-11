@@ -2,7 +2,6 @@
 
 query_pulseaudio () {
 	local default_source=$(pactl info | grep -P "Default Source" | sed 's/Default\ Source\: //g')
-	printf "${default_source}\n"
 	if [ -z "$default_source" ]; then
 		echo "No PulseAudio default source was found. Exiting."
 	else
@@ -12,7 +11,6 @@ query_pulseaudio () {
 query_microphone_mute_status () {
 	local mute_status=$(pactl list sources | grep -C 6 $1 | tail -n 1)
 	local is_muted=$(echo $mute_status | grep -P -o "[^Mute\: ].*")
-	printf "${is_muted}\n"
 	set_source_mute_status $is_muted $1
 }
 set_source_mute_status () {
@@ -34,7 +32,6 @@ send_desktop_notification () {
 		mute_action_type="muted"
 	fi
 
-	printf "${mic_description}\n"
 	$(notify-send "Your microphone was ${mute_action_type}" "The device ${mic_description} was ${mute_action_type}")
 }
 
