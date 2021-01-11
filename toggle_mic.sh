@@ -3,7 +3,11 @@
 query_pulseaudio () {
 	local default_source=$(pactl info | grep -P "Default Source" | sed 's/Default\ Source\: //g')
 	printf "${default_source}\n"
-	query_microphone_mute_status $default_source
+	if [ -z "$default_source" ]; then
+		echo "No PulseAudio default source was found. Exiting."
+	else
+		query_microphone_mute_status $default_source
+	fi
 }
 query_microphone_mute_status () {
 	local mute_status=$(pactl list sources | grep -C 6 $1 | tail -n 1)
