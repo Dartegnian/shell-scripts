@@ -1,7 +1,7 @@
 #! /bin/sh
 
 query_pulseaudio () {
-	local default_source=$(pactl info | grep -P -o "alsa_input.*")
+	local default_source=$(pactl info | grep -P "Default Source" | sed 's/Default\ Source\: //g')
 	printf "${default_source}\n"
 	query_microphone_mute_status $default_source
 }
