@@ -158,7 +158,8 @@ install_tkg_proton () {
     curl -L -o proton-tkg.zip $1
     mkdir Proton-TKG && mv proton-tkg.zip ./Proton-TKG && cd Proton-TKG
     unzip proton-tkg.zip && rm proton-tkg.zip && cd ../
-    mv Proton-TKG /home/dartegnian/.steam/root/compatibilitytools.d/
+    rm -rf ~/.steam/root/compatibilitytools.d/Proton-TKG
+    mv Proton-TKG ~/.steam/root/compatibilitytools.d/
 }
 install_tkg_wine () {
     curl -L -o wine-tkg.zst $1
