@@ -128,7 +128,7 @@ update_npm_global_packages () {
     format_output "yellow" "Packages updated!"
 }
 update_oh_my_zsh () {
-    current_directory=$(pwd)
+    local current_directory=$(pwd)
     printf "==> Updating Oh My Zsh\n"
     cd $XDG_DATA_HOME/oh-my-zsh
     git pull --ff-only
@@ -150,7 +150,7 @@ update_everything () {
 }
 update_nothing () {
     printf "Cancelling update process.\n"
-    printf "No changes to the system was made."
+    printf "No changes to the system was made.\n"
     exit 1
 }
 update_not_sure () {
