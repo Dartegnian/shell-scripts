@@ -22,7 +22,7 @@ format_output () {
 print_greeting () {
     printf "Which of the following do you want to update, ${USER^}?\n"
     printf "Hint: Either type the highlighted letters below or the words themselves.\n"
-    printf "GNU/[L]inux [N]ode.js [G]lobalNPMPackages [O]hMyZsh [A]ll [E]xit\n\n"
+    printf "GNU/[L]inux [N]ode.js [G]lobalNPMPackages [O]hMyZsh [T]KG [A]ll [E]xit\n\n"
 }
 read_command () {
     read -p "Update: " update_choice
@@ -51,6 +51,9 @@ process_short_command () {
             ;;
         o)
             update_oh_my_zsh
+            ;;
+        t)
+            update_tkg
             ;;
         a)
             update_everything
@@ -82,6 +85,9 @@ process_long_command () {
             ;;
         ohmyzsh)
             update_oh_my_zsh
+            ;;
+        tkg)
+            update_tkg
             ;;
         all)
             update_everything
