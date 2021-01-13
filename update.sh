@@ -135,6 +135,35 @@ update_oh_my_zsh () {
     cd $current_directory
     format_output "yellow" "Oh My Zsh has been fast-forwarded to the latest commit!"
 }
+update_tkg () {
+    local current_directory=$(pwd)
+    printf "==> Updating/Installing TKG Proton and Wine\n"
+    tkg_github_repo="Frogging-Family/wine-tkg-git"
+    tkg_proton_download_link=$(curl -s https://api.github.com/repos/${tkg_github_repo}/releases/latest | grep -P -o https\:\/\/.*\.release\.zip | head -n 1)
+    tkg_wine_download_link=$(curl -s https://api.github.com/repos/${tkg_github_repo}/releases/latest | grep -P -o https\:\/\/.\*\.zst | head -n 1)
+
+    if [ -d "/tmp/tkg" ]; then
+        cd /tmp/tkg
+    else
+        mkdir /tmp/tkg && cd /tmp/tkg
+    fi
+
+    install_tkg_proton $tkg_proton_download_link
+    install_tkg_wine $tkg_wine_download_link
+
+    rm -rf /tmp/tkg
+    cd $current_directory
+}
+install_tkg_proton () {
+    curl -L -o proton-tkg.zip $1
+    mkdir Proton-TKG && mv proton-tkg.zip ./Proton-TKG && cd Proton-TKG
+    unzip proton-tkg.zip && rm proton-tkg.zip && cd ../
+    mv Proton-TKG /home/dartegnian/.steam/root/compatibilitytools.d/
+}
+install_tkg_wine () {
+    curl -L -o wine-tkg.zst $1
+    sudo pacman -U wine-tkg.zst
+}
 update_everything () {
     format_output "yellow" "==> Updating entire system"
 
