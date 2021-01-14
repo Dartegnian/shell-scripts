@@ -1,6 +1,6 @@
 #! /bin/sh
 
-git_directory="/home/${USER}/SYGtech/git_gtech/darts-dots"
+git_directory="/home/${USER}/SYGtech/goteki-git/darts-dots"
 
 # User configs
 cp -r ~/.config/alacritty/ ${git_directory}/pc/home_pc/config/
