@@ -105,6 +105,14 @@ process_long_command () {
 update_gnulinux () {
     printf "==> Updating GNU/Linux and your packages\n"
     paru -Syu --noconfirm
+    printf "==> Attempting to remove unused pacman packages\n"
+    if [ -z $(sudo pacman -Qtdq) ]; then
+        format_output "yellow" "No unused packages were found"
+    else
+        printf "==> Removing unused packages\n"
+        sudo pacman -Qtdq | sudo pacman -Rns - --noconfirm
+        format_output "yellow" "Unused packages were removed."
+    fi
     format_output "yellow" "Your GNU/Linux system and packages are now up to date!"
 }
 update_node () {
