@@ -9,9 +9,9 @@ print_memory_status () {
 }
 print_os_info () {
 	local os_name=$(uname -o)
-	local os_distro=$(uname -n)
+	local os_distro=$(cat /etc/*-release | grep PRETTY_NAME.* | grep -o -P "[^PRETTY_NAME=].*" | sed 's/"//g')
 	local os_version=$(uname -r | grep -o -P "\d{1,}.\d{1,}.\d{1,}")
-	printf "\n${os_name} System ${os_distro} Rolling Release Version ${os_version}\n"
+	printf "\n${os_name} ${os_distro} Rolling Release Version ${os_version}\n"
 }
 print_welcome_message () {
 	local os_name=$(uname -o)
