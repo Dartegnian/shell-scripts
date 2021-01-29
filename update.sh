@@ -112,7 +112,7 @@ update_gnulinux () {
     printf "==> Updating GNU/Linux and your packages\n"
     paru -Syu --noconfirm
     printf "==> Attempting to remove unused pacman packages\n"
-    if [ -z $(sudo pacman -Qtdq) ]; then
+    if [ -z $(sudo pacman -Qtdq | tail -n 1) ]; then
         format_output "yellow" "No unused packages were found"
     else
         printf "==> Removing unused packages\n"
