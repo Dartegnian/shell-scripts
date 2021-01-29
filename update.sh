@@ -22,7 +22,7 @@ format_output () {
 print_greeting () {
     printf "Which of the following do you want to update, ${USER^}?\n"
     printf "Hint: Either type the highlighted letters below or the words themselves.\n"
-    printf "GNU/[L]inux [N]ode.js [G]lobalNPMPackages [O]hMyZsh [T]KG [A]ll (except TKG) [E]xit\n\n"
+    printf "GNU/[L]inux [N]ode.js [G]lobalNPMPackages [O]hMyZsh [T]KG T[M]ux [A]ll (except TKG) [E]xit\n\n"
 }
 read_command () {
     read -p "Update: " update_choice
@@ -54,6 +54,9 @@ process_short_command () {
             ;;
         t)
             update_tkg
+            ;;
+        m)
+            update_tmux
             ;;
         a)
             update_everything
@@ -88,6 +91,9 @@ process_long_command () {
             ;;
         tkg)
             update_tkg
+            ;;
+        tmux)
+            update_tmux
             ;;
         all)
             update_everything
@@ -187,6 +193,15 @@ install_tkg_wine () {
     curl -L -o wine-tkg.zst $1
     sudo pacman -U wine-tkg.zst
 }
+update_tmux () {
+    printf "==> Updating Tmux plugins via TPM\n"
+    if [ -d ~/.tmux/plugins/tpm/bin/ ]; then
+        sh ~/.tmux/plugins/tpm/bin/update_plugins all
+        format_output "yellow" "Your Tmux plugins are now up to date!"
+    else
+        format_output "red" "Tmux Plugin Manager not found\n"
+    fi
+}
 update_everything () {
     format_output "yellow" "==> Updating entire system"
 
@@ -197,6 +212,8 @@ update_everything () {
     update_npm_global_packages
     printf "\n"
     update_oh_my_zsh
+    printf "\n"
+    update_tmux
     
     format_output "yellow" "\nThe entire system is up-to-date!"
 }
