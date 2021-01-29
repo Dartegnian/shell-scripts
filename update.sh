@@ -116,7 +116,7 @@ update_gnulinux () {
         format_output "yellow" "No unused packages were found"
     else
         printf "==> Removing unused packages\n"
-        sudo pacman -Qtdq | sudo pacman -Rns - --noconfirm
+        sudo pacman -Qtdq | sudo pacman --noconfirm -Rns -
         format_output "yellow" "Unused packages were removed."
     fi
     format_output "yellow" "Your GNU/Linux system and packages are now up to date!"
