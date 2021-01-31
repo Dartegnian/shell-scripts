@@ -22,16 +22,16 @@ start_server () {
 	start_mc_server
 }
 start_mc_server () {
+    cd /srv/rc-minecraft
     local init_memory_size="1024M"
     local max_memory_size="1792M"
     local minecraft_jar_name="rc-server"
     local world_size=$(grep max-world-size server.properties | grep -oP "[^max\-world\-size=].*")
-    cd /srv/rc-minecraft
     echo "Starting the server with these variables"
     echo "Initial RAM size: $init_memory_size"
     echo "Maximum RAM size: $max_memory_size"
-    echo "Minecraft JAR file name: $max_memory_size.jar"
-    echo "World size: $(expr ${world_size} * 2)"
+    echo "Minecraft JAR file name: $minecraft_jar_name.jar"
+    # echo "World size: $(expr ${world_size} * 2)"
     echo_starting_text
     sleep 3
     java -Xms$init_memory_size -Xmx$max_memory_size -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1 -Dusing.aikars.flags=https://mcflags.emc.gs -Daikars.new.flags=true -jar /srv/rc-minecraft/rc-server.jar nogui
