@@ -22,6 +22,7 @@ cp $XDG_CONFIG_HOME/alsa/asoundrc/asound.conf ${git_directory}/pc/home_pc/pulsea
 
 # System-wide configs
 cp /etc/X11/xorg.conf ${git_directory}/pc/home_pc/X.Org/
+cp /etc/nginx/nginx.conf ${git_directory}/pc/home_pc/nginx/
 cp /etc/pulse/daemon.conf ${git_directory}/pc/home_pc/pulseaudio/
 cp /etc/asound.conf ${git_directory}/pc/home_pc/pulseaudio/
 cp /etc/default/grub ${git_directory}/pc/home_pc/grub/
