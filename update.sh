@@ -166,7 +166,11 @@ update_npm_global_packages () {
 update_oh_my_zsh () {
     local current_directory=$(pwd)
     printf "==> Updating Oh My Zsh\n"
-    cd $XDG_DATA_HOME/oh-my-zsh
+    if [ -d $XDG_DATA_HOME/oh-my-zsh ]; then
+	    cd $XDG_DATA_HOME/oh-my-zsh
+    else
+	    cd ~/.oh-my-zsh
+    fi
     git pull --ff-only
     cd $current_directory
     format_output "yellow" "Oh My Zsh has been fast-forwarded to the latest commit!"
