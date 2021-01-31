@@ -110,7 +110,15 @@ process_long_command () {
 # updaters
 update_gnulinux () {
     printf "==> Updating GNU/Linux and your packages\n"
-    paru -Syu --noconfirm
+    
+    if [ -n $(where paru) ]; then
+	    paru -Syu --noconfirm
+    elif [ -n $(where yay) ]; then
+	    yay -Syu --noconfirm
+    else
+	    sudo pacman -Syu --noconfirm
+    fi
+
     printf "==> Attempting to remove unused pacman packages\n"
     if [ -z $(sudo pacman -Qtdq | tail -n 1) ]; then
         format_output "yellow" "No unused packages were found"
