@@ -119,15 +119,19 @@ update_gnulinux () {
 	    sudo pacman -Syu --noconfirm
     fi
 
+    remove_unused_pacman_packages
+    format_output "yellow" "Your GNU/Linux system and packages are now up to date!"
+}
+remove_unused_pacman_packages () {
     printf "==> Attempting to remove unused pacman packages\n"
-    if [ -z $(sudo pacman -Qtdq | tail -n 1) ]; then
+    local unused_packages=$(sudo pacman -Qtdq)
+    if [ -z $(echo "$unused_packages" | tail -n 1) ]; then
         format_output "yellow" "No unused packages were found"
     else
         printf "==> Removing unused packages\n"
-        sudo pacman -Qtdq | sudo pacman --noconfirm -Rns -
+        echo "$unused_packages" | sudo pacman --noconfirm -Rns -
         format_output "yellow" "Unused packages were removed."
     fi
-    format_output "yellow" "Your GNU/Linux system and packages are now up to date!"
 }
 update_node () {
     if [ -d /usr/share/nvm/ ]; then
