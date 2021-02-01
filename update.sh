@@ -133,8 +133,10 @@ update_node () {
     if [ -d /usr/share/nvm/ ]; then
         printf "==> Updating Node and NPM\n"
         . /usr/share/nvm/nvm.sh
+        update_node_via_nvm
     elif [ -d ~/.nvm/ ]; then
         . ~/.nvm/nvm.sh
+        update_node_via_nvm
     else
         format_output "red" "Missing package: NVM\n"
         read_command
