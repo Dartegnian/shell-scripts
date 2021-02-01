@@ -133,29 +133,33 @@ update_node () {
     if [ -d /usr/share/nvm/ ]; then
         printf "==> Updating Node and NPM\n"
         . /usr/share/nvm/nvm.sh
-        local old_version=$(nvm current | sed -n -e 's/v//p')
-        local versions=$(nvm ls-remote)
-        wait
-        local latest_version=$(echo $versions | sed  -e 's/\s\+/\n/g' | tail -n 1 | grep -P -o "\d*\.\d*\.\d*")
-
-        if [ $old_version == $latest_version ]; then
-            format_output "yellow" "Your local version of Node.js is already up to date!"
-        else
-            format_output "red" "Your local version of Node.js is outdated."
-            printf "==> Installing the latest version of Node.js\n"
-            format_output "red" "WARNING: This will uninstall Node ${old_version} but keep your global NPM packages."
-            format_output "red" "WARNING: This also installs the a non-LTS version of Node.js.\n"
-            nvm install node
-            nvm alias default node
-            nvm reinstall-packages $old_version
-            nvm uninstall $old_version
-            nvm use default
-            format_output "red" "WARNING: Node.js v${old_version} was uninstalled!"
-            format_output "yellow" "The Node.js v${latest_version} was installed!"
-        fi
+    elif [ -d ~/.nvm/ ]; then
+        . ~/.nvm/nvm.sh
     else
         format_output "red" "Missing package: NVM\n"
         read_command
+    fi
+}
+update_node_via_nvm () {
+    local old_version=$(nvm current | sed -n -e 's/v//p')
+    local versions=$(nvm ls-remote)
+    wait
+    local latest_version=$(echo $versions | sed  -e 's/\s\+/\n/g' | tail -n 1 | grep -P -o "\d*\.\d*\.\d*")
+
+    if [ $old_version == $latest_version ]; then
+        format_output "yellow" "Your local version of Node.js is already up to date!"
+    else
+        format_output "red" "Your local version of Node.js is outdated."
+        printf "==> Installing the latest version of Node.js\n"
+        format_output "red" "WARNING: This will uninstall Node ${old_version} but keep your global NPM packages."
+        format_output "red" "WARNING: This also installs the a non-LTS version of Node.js.\n"
+        nvm install node
+        nvm alias default node
+        nvm reinstall-packages $old_version
+        nvm uninstall $old_version
+        nvm use default
+        format_output "red" "WARNING: Node.js v${old_version} was uninstalled!"
+        format_output "yellow" "The Node.js v${latest_version} was installed!"
     fi
 }
 update_npm_global_packages () {
