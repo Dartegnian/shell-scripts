@@ -113,7 +113,7 @@ update_gnulinux () {
     
     if [[ $(pacman -Qs paru) ]]; then
 	    paru -Syu --noconfirm
-    elif [[ $(pamcna -Qs yay) ]]; then
+    elif [[ $(pacman -Qs yay) ]]; then
 	    yay -Syu --noconfirm
     else
 	    sudo pacman -Syu --noconfirm
