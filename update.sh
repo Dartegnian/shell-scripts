@@ -111,9 +111,9 @@ process_long_command () {
 update_gnulinux () {
     printf "==> Updating GNU/Linux and your packages\n"
     
-    if [ -d /usr/bin/paru ]; then
+    if [[ $(pacman -Qs paru) ]]; then
 	    paru -Syu --noconfirm
-    elif [ -d /usr/bin/yay ]; then
+    elif [[ $(pamcna -Qs yay) ]]; then
 	    yay -Syu --noconfirm
     else
 	    sudo pacman -Syu --noconfirm
@@ -128,6 +128,7 @@ remove_unused_pacman_packages () {
     if [ -z $(echo "$unused_packages" | tail -n 1) ]; then
         format_output "yellow" "No unused packages were found"
     else
+		format_output "yellow" "Unused packages were found"
         printf "==> Removing unused packages\n"
         echo "$unused_packages" | sudo pacman --noconfirm -Rns -
         format_output "yellow" "Unused packages were removed."
