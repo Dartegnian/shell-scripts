@@ -8,6 +8,7 @@ cp -r  ~/.config/bspwm/ ${git_directory}/pc/home_pc/config/
 cp -r ~/.config/cava/ ${git_directory}/pc/home_pc/config/
 cp -r ~/.config/ckb-next/ ${git_directory}/pc/home_pc/config/
 cp -r ~/.config/compton/ ${git_directory}/pc/home_pc/config/
+cp -r ~/.config/picom/ ${git_directory}/pc/home_pc/config/
 cp -r ~/.config/dunst/ ${git_directory}/pc/home_pc/config/
 cp -r ~/.config/mpd/ ${git_directory}/pc/home_pc/config/
 cp -r ~/.config/nomacs/ ${git_directory}/pc/home_pc/config/
