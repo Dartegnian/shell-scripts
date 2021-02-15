@@ -183,7 +183,7 @@ update_oh_my_zsh () {
 	    cd ~/.oh-my-zsh
     fi
     git pull --ff-only
-    cd $current_directory
+    cd "$current_directory"
     format_output "yellow" "Oh My Zsh has been fast-forwarded to the latest commit!"
 }
 update_tkg () {
@@ -203,7 +203,7 @@ update_tkg () {
     install_tkg_wine $tkg_wine_download_link
 
     rm -rf /tmp/tkg
-    cd $current_directory
+    cd "$current_directory"
 }
 install_tkg_proton () {
     curl -L -o proton-tkg.zip $1
