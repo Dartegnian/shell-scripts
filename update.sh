@@ -207,14 +207,15 @@ update_tkg () {
 }
 install_tkg_proton () {
     curl -L -o proton-tkg.zip $1
-    mkdir Proton-TKG && mv proton-tkg.zip ./Proton-TKG && cd Proton-TKG
-    unzip proton-tkg.zip && rm proton-tkg.zip && cd ../
+    unzip -d Proton-TKG proton-tkg.zip && rm proton-tkg.zip
     rm -rf ~/.steam/root/compatibilitytools.d/Proton-TKG
     mv Proton-TKG ~/.steam/root/compatibilitytools.d/
+    format_output "yellow" "Proton-TKG has been installed!"
 }
 install_tkg_wine () {
     curl -L -o wine-tkg.zst $1
     sudo pacman -U wine-tkg.zst
+    format_output "yellow" "Wine-TKG has been installed!"
 }
 update_tmux () {
     printf "==> Updating Tmux plugins via TPM\n"
