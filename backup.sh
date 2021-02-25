@@ -28,6 +28,8 @@ cp /etc/pulse/daemon.conf ${git_directory}/pc/home_pc/pulseaudio/
 cp /etc/asound.conf ${git_directory}/pc/home_pc/pulseaudio/
 cp /etc/default/grub ${git_directory}/pc/home_pc/grub/
 cp /etc/mkinitcpio.conf ${git_directory}/pc/home_pc/mkinitcpio/
+cp /etc/pacman.conf ${git_directory}/pc/home_pc/pacman/
+cp -R /etc/pacman.d/hooks ${git_directory}/pc/home_pc/pacman/
 
 # GNU/Linux + AUR packages
 paru -Qq > ${git_directory}/pc/home_pc/gloriousArchPackages.txt
