@@ -1,40 +1,44 @@
 #! /bin/sh
 
 git_directory="/home/${USER}/SYGtech/goteki-git/darts-dots"
+device_category="pc"
+distro_name=$(cat /etc/*-release | grep DISTRIB_ID.* | grep -o -P "[^DISTRIB_ID=].*" | sed 's/"//g'| awk '{print tolower($0)}')
+computer_name="main-pc"
+backup_folder_location="${git_directory}/${device_category}/${distro_name}-${computer_name}"
 
 # User configs
-cp -r ~/.config/alacritty/ ${git_directory}/pc/home_pc/config/
-cp -r  ~/.config/bspwm/ ${git_directory}/pc/home_pc/config/
-cp -r ~/.config/cava/ ${git_directory}/pc/home_pc/config/
-cp -r ~/.config/ckb-next/ ${git_directory}/pc/home_pc/config/
-cp -r ~/.config/compton/ ${git_directory}/pc/home_pc/config/
-cp -r ~/.config/picom/ ${git_directory}/pc/home_pc/config/
-cp -r ~/.config/dunst/ ${git_directory}/pc/home_pc/config/
-cp -r ~/.config/mpd/ ${git_directory}/pc/home_pc/config/
-cp -r ~/.config/nomacs/ ${git_directory}/pc/home_pc/config/
-cp -r ~/.config/rofi/ ${git_directory}/pc/home_pc/config/
-cp -r ~/.config/sxhkd/ ${git_directory}/pc/home_pc/config/
-rsync -av --exclude="/plugins" ~/.config/ranger/ ${git_directory}/pc/home_pc/config/ranger/ &> /dev/null
-rsync -av --exclude=".*" ~/.config/polybar/ ${git_directory}/pc/home_pc/config/polybar/ &> /dev/null
+cp -r ~/.config/alacritty/ ${backup_folder_location}/config/
+cp -r  ~/.config/bspwm/ ${backup_folder_location}/config/
+cp -r ~/.config/cava/ ${backup_folder_location}/config/
+cp -r ~/.config/ckb-next/ ${backup_folder_location}/config/
+cp -r ~/.config/compton/ ${backup_folder_location}/config/
+cp -r ~/.config/picom/ ${backup_folder_location}/config/
+cp -r ~/.config/dunst/ ${backup_folder_location}/config/
+cp -r ~/.config/mpd/ ${backup_folder_location}/config/
+cp -r ~/.config/nomacs/ ${backup_folder_location}/config/
+cp -r ~/.config/rofi/ ${backup_folder_location}/config/
+cp -r ~/.config/sxhkd/ ${backup_folder_location}/config/
+rsync -av --exclude="/plugins" ~/.config/ranger/ ${backup_folder_location}/config/ranger/ &> /dev/null
+rsync -av --exclude=".*" ~/.config/polybar/ ${backup_folder_location}/config/polybar/ &> /dev/null
 
 # Home directory configs
-cp ~/.tmux.conf ${git_directory}/pc/home_pc/config/tmux/tmux.conf
-cp ~/.zshrc ${git_directory}/pc/home_pc/zsh/
-cp $XDG_CONFIG_HOME/alsa/asoundrc/asound.conf ${git_directory}/pc/home_pc/pulseaudio/
+cp ~/.tmux.conf ${backup_folder_location}/config/tmux/tmux.conf
+cp ~/.zshrc ${backup_folder_location}/zsh/
+cp $XDG_CONFIG_HOME/alsa/asoundrc/asound.conf ${backup_folder_location}/pulseaudio/
 
 # System-wide configs
-cp /etc/X11/xorg.conf ${git_directory}/pc/home_pc/X.Org/
-cp /etc/nginx/nginx.conf ${git_directory}/pc/home_pc/nginx/
-cp /etc/pulse/daemon.conf ${git_directory}/pc/home_pc/pulseaudio/
-cp /etc/asound.conf ${git_directory}/pc/home_pc/pulseaudio/
-cp /etc/default/grub ${git_directory}/pc/home_pc/grub/
-cp /etc/mkinitcpio.conf ${git_directory}/pc/home_pc/mkinitcpio/
-cp /etc/pacman.conf ${git_directory}/pc/home_pc/pacman/
-cp -R /etc/pacman.d/hooks ${git_directory}/pc/home_pc/pacman/
+cp /etc/X11/xorg.conf ${backup_folder_location}/X.Org/
+cp /etc/nginx/nginx.conf ${backup_folder_location}/nginx/
+cp /etc/pulse/daemon.conf ${backup_folder_location}/pulseaudio/
+cp /etc/asound.conf ${backup_folder_location}/pulseaudio/
+cp /etc/default/grub ${backup_folder_location}/grub/
+cp /etc/mkinitcpio.conf ${backup_folder_location}/mkinitcpio/
+cp /etc/pacman.conf ${backup_folder_location}/pacman/
+cp -R /etc/pacman.d/hooks ${backup_folder_location}/pacman/
 
 # GNU/Linux + AUR packages
-paru -Qq > ${git_directory}/pc/home_pc/gloriousArchPackages.txt
-paru -Qqe > ${git_directory}/pc/home_pc/gloriousUserPackages.txt
+paru -Qq > ${backup_folder_location}/gloriousArchPackages.txt
+paru -Qqe > ${backup_folder_location}/gloriousUserPackages.txt
 
 # NPM packages
-npm list -g --depth=0 --parseable=true | sed -n -e 's/^.*node_modules\///p' > ${git_directory}/pc/home_pc/npm/globalPackages.txt
+npm list -g --depth=0 --parseable=true | sed -n -e 's/^.*node_modules\///p' > ${backup_folder_location}/npm/globalPackages.txt
