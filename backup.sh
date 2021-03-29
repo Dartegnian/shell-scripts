@@ -10,7 +10,7 @@ backup_folder_location="${git_directory}/${device_category}/${distro_name}-${com
 cp -r ~/.config/alacritty/ ${backup_folder_location}/config/
 cp -r  ~/.config/bspwm/ ${backup_folder_location}/config/
 cp -r ~/.config/cava/ ${backup_folder_location}/config/
-cp -r ~/.config/ckb-next/ ${backup_folder_location}/config/
+# cp -r ~/.config/ckb-next/ ${backup_folder_location}/config/
 cp -r ~/.config/compton/ ${backup_folder_location}/config/
 cp -r ~/.config/picom/ ${backup_folder_location}/config/
 cp -r ~/.config/dunst/ ${backup_folder_location}/config/
@@ -35,6 +35,7 @@ cp /etc/default/grub ${backup_folder_location}/grub/
 cp /etc/mkinitcpio.conf ${backup_folder_location}/mkinitcpio/
 cp /etc/pacman.conf ${backup_folder_location}/pacman/
 cp -R /etc/pacman.d/hooks ${backup_folder_location}/pacman/
+cp /etc/xdg/reflector/reflector.conf ${backup_folder_location}/reflector/
 
 # GNU/Linux + AUR packages
 paru -Qq > ${backup_folder_location}/gloriousArchPackages.txt
