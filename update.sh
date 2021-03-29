@@ -111,9 +111,9 @@ process_long_command () {
 update_gnulinux () {
     printf "==> Updating GNU/Linux and your packages\n"
     
-    if [[ $(pacman -Qs paru) ]]; then
+    if [[ $(pacman -Qi paru) ]]; then
 	    paru -Syu --noconfirm
-    elif [[ $(pacman -Qs yay) ]]; then
+    elif [[ $(pacman -Qi yay) ]]; then
 	    yay -Syu --noconfirm
     else
 	    sudo pacman -Syu --noconfirm
