@@ -206,8 +206,9 @@ update_tkg () {
     cd "$current_directory"
 }
 install_tkg_proton () {
-    curl -L -o proton-tkg.zip $1
-    unzip -d Proton-TKG proton-tkg.zip && rm proton-tkg.zip
+    curl -L -o proton-tkg.tar.xz $1
+    mkdir Proton-TKG
+    tar xf proton-tkg.tar.xz -C Proton-TKG && rm proton-tkg.tar.xz
     rm -rf ~/.steam/root/compatibilitytools.d/Proton-TKG
     mv Proton-TKG ~/.steam/root/compatibilitytools.d/
     format_output "yellow" "Proton-TKG has been installed!"
