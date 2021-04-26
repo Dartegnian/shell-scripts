@@ -190,7 +190,7 @@ update_tkg () {
     local current_directory=$(pwd)
     printf "==> Updating/Installing TKG Proton and Wine\n"
     tkg_github_repo="Frogging-Family/wine-tkg-git"
-    tkg_proton_download_link=$(curl -s https://api.github.com/repos/${tkg_github_repo}/releases/latest | grep -P -o https\:\/\/.*\.release\.zip | head -n 1)
+    tkg_proton_download_link=$(curl -s https://api.github.com/repos/${tkg_github_repo}/releases/latest | grep -P -o https\:\/\/.*\.release\.tar.xz | head -n 1)
     tkg_wine_download_link=$(curl -s https://api.github.com/repos/${tkg_github_repo}/releases/latest | grep -P -o https\:\/\/.\*\.zst | head -n 1)
 
     if [ -d "/tmp/tkg" ]; then
