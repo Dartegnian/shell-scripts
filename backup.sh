@@ -22,9 +22,9 @@ rsync -av --exclude="/plugins" ~/.config/ranger/ ${backup_folder_location}/confi
 rsync -av --exclude=".*" ~/.config/polybar/ ${backup_folder_location}/config/polybar/ &> /dev/null
 
 # Home directory configs
-cp ~/.tmux.conf ${backup_folder_location}/config/tmux/tmux.conf
-cp ~/.zshrc ${backup_folder_location}/zsh/
-cp $XDG_CONFIG_HOME/alsa/asoundrc/asound.conf ${backup_folder_location}/pulseaudio/
+cp ~/.config/tmux/tmux.conf ${backup_folder_location}/config/tmux/tmux.conf
+cp ~/.config/zsh/.zshrc ${backup_folder_location}/config/zsh/
+#cp $XDG_CONFIG_HOME/alsa/asoundrc/asound.conf ${backup_folder_location}/pulseaudio/
 
 # System-wide configs
 cp /etc/X11/xorg.conf ${backup_folder_location}/X.Org/
