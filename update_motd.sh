@@ -17,6 +17,17 @@ print_os_info () {
 	fi
 	printf "${os_distro} Rolling Release Version ${os_version}\n"
 }
+print_system_node () {
+	local node=$(uname -n)
+	printf "\nNode: ${node}\n"
+	printf "The system is coming up. Please wait.\n"
+	printf "The system is ready.\n\n"
+}
+print_copyrights () {
+	printf "\nCopyright (c) 1991, 1992 Linus Torvalds\n"
+	printf "Copyright (c) 1998-2021 Free Software Foundation, Inc.\n"
+	printf "All Rights Reserved\n"
+}
 print_welcome_message () {
 	local os_name=$(uname -o)
 	local host_name=$(hostname)
@@ -36,7 +47,9 @@ print_last_login () {
 
 print_memory_status
 print_os_info
+print_copyrights
+# print_system_node
 print_welcome_message
 print_user_login_info
-print_os_info
+print_os_info "user"
 print_last_login
