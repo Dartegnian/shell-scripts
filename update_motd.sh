@@ -31,7 +31,8 @@ print_copyrights () {
 print_welcome_message () {
 	local os_name=$(uname -o)
 	local host_name=$(hostname)
-	printf "\nWelcome to the ${os_name} System\n"
+	local architecture=$(uname -m)
+	printf "\nWelcome to the ${os_name} ${architecture} System\n"
 	printf "System name: ${host_name}\n"
 }
 print_user_login_info () {
@@ -39,9 +40,10 @@ print_user_login_info () {
 	printf "Password: "
 }
 print_last_login () {
-	local login_date=$(last ${USER} -n 1 | grep -o -P "[^begins] ... ...  *\d* ..:.." | tr -s " ")
-	local terminal_name=$(last $USER -n 1 | grep -o -P "^((?!wtmp).)*$" | awk '{print $2}')
-	echo "Last login:${login_date} on ${terminal_name}"
+	local last_login=$(last ${USER} -n 1 --time-format full | head -n 1)
+	local login_date=$(grep -o -P "... ... *\d* ..:..:.." <<< ${last_login})
+	local terminal_name=$(awk '{print $2}' <<< ${last_login})
+	echo "Last login: ${login_date} on ${terminal_name}"
 }
 
 
