@@ -18,13 +18,14 @@ cp -r ~/.config/mpd/ ${backup_folder_location}/config/
 cp -r ~/.config/nomacs/ ${backup_folder_location}/config/
 cp -r ~/.config/rofi/ ${backup_folder_location}/config/
 cp -r ~/.config/sxhkd/ ${backup_folder_location}/config/
+cp ~/.config/alsa/asoundrc/asound.conf ${backup_folder_location}/pulseaudio/
+cp ~/.config/tmux/tmux.conf ${backup_folder_location}/config/tmux/tmux.conf
 rsync -av --exclude="/plugins" ~/.config/ranger/ ${backup_folder_location}/config/ranger/ &> /dev/null
 rsync -av --exclude=".*" ~/.config/polybar/ ${backup_folder_location}/config/polybar/ &> /dev/null
 
-# Home directory configs
-cp ~/.config/tmux/tmux.conf ${backup_folder_location}/config/tmux/tmux.conf
+# Zsh
 cp ~/.config/zsh/.zshrc ${backup_folder_location}/config/zsh/
-#cp $XDG_CONFIG_HOME/alsa/asoundrc/asound.conf ${backup_folder_location}/pulseaudio/
+rsync -av --exclude=".*" ~/.config/zsh/sources/ ${backup_folder_location}/config/zsh/sources/ &> /dev/null
 
 # System-wide configs
 cp /etc/X11/xorg.conf ${backup_folder_location}/X.Org/
