@@ -19,24 +19,19 @@ query_microphone_mute_status() {
 	set_source_mute_status ${mute_status/Mute\: /} "$1" "$2"
 }
 set_source_mute_status() {
+	local mute_action_type=""
 	if [[ $1 == "yes" ]]; then
+		mute_action_type="unmuted"
 		$(pactl set-source-mute $2 false)
 	else
+		mute_action_type="muted"
 		$(pactl set-source-mute $2 true)
 	fi
 
-	send_desktop_notification "$1" "$3"
+	send_desktop_notification "$mute_action_type" "$3"
 }
 send_desktop_notification() {
-	local mute_action_type=""
-
-	if [[ $1 == "yes" ]]; then
-		mute_action_type="unmuted"
-	else
-		mute_action_type="muted"
-	fi
-
-	$(notify-send "Your microphone was $mute_action_type" "The device $2 was $mute_action_type")
+	$(notify-send "Your microphone was $1" "The device $2 was $1")
 }
 main() {
 	query_pulseaudio
