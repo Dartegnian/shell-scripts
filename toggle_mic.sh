@@ -1,38 +1,45 @@
 #! /bin/sh
 
-query_pulseaudio () {
-	local default_source=$(pactl info | grep -P "Default Source" | sed 's/Default\ Source\: //g')
-	if [ -z "$default_source" ]; then
-		echo "No PulseAudio default source was found. Exiting."
+query_pulseaudio() {
+	local err_message=("No PulseAudio default source was found. Exiting." "Nothing was changed.")
+	local default_source="$(pactl info | grep -P "Default Source")"
+	local mic_description=""
+	default_source=${default_source/Default\ Source\: /}
+	mic_description=$(pactl list sources | grep -A 1 $default_source | tail -n 1 | sed -E 's/Analog Stereo|Digital Stereo//g' | xargs)
+
+	if [[ $default_source ]]; then
+		query_microphone_mute_status "$default_source" "${mic_description/Description\: /}"
 	else
-		query_microphone_mute_status $default_source
+		echo $err_message
+		notify-send "$err_message" "${err_message[1]}"
 	fi
 }
-query_microphone_mute_status () {
+query_microphone_mute_status() {
 	local mute_status=$(pactl list sources | grep -C 6 $1 | tail -n 1)
-	local is_muted=$(echo $mute_status | grep -P -o "[^Mute\: ].*")
-	set_source_mute_status $is_muted $1
+	set_source_mute_status ${mute_status/Mute\: /} "$1" "$2"
 }
-set_source_mute_status () {
-	if [ $1 == "yes" ]; then
+set_source_mute_status() {
+	if [[ $1 == "yes" ]]; then
 		$(pactl set-source-mute $2 false)
-	else 
+	else
 		$(pactl set-source-mute $2 true)
 	fi
 
-	send_desktop_notification $1 $2
+	send_desktop_notification "$1" "$3"
 }
-send_desktop_notification () {
+send_desktop_notification() {
 	local mute_action_type=""
-	local mic_description=$(pactl list sources | grep -C 1 $2 | sed 's/Description\: //g' | sed -E -e 's/Analog Stereo|Digital Stereo//g' | tail -n 1 | xargs)
 
-	if [ $1 == "yes" ]; then
+	if [[ $1 == "yes" ]]; then
 		mute_action_type="unmuted"
-	else 
+	else
 		mute_action_type="muted"
 	fi
 
-	$(notify-send "Your microphone was ${mute_action_type}" "The device ${mic_description} was ${mute_action_type}")
+	$(notify-send "Your microphone was $mute_action_type" "The device $2 was $mute_action_type")
+}
+main() {
+	query_pulseaudio
 }
 
-query_pulseaudio
+main
