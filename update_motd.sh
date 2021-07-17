@@ -42,8 +42,8 @@ print_user_login_info() {
 	printf "Password: "
 }
 print_last_login() {
-	local last_login=$(last ${USER} -n 1 --time-format full | head -n 1)
-	local login_date=$(grep -o -P "... ... *\d* ..:..:.." <<<${last_login})
+	local last_login=$(last ${USER} -n 1 --time-format full | head -n 1 | xargs)
+	local login_date=$(grep -o -P "... ... *\d* ..:..:.." <<<${last_login} | head -n 1)
 	local terminal_name=$(awk '{print $2}' <<<${last_login})
 	echo "Last login: ${login_date} on ${terminal_name}"
 }
