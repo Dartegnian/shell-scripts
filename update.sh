@@ -190,10 +190,10 @@ update_tkg () {
     local current_directory=$(pwd)
     printf "==> Updating/Installing TKG Proton and Wine\n"
     tkg_github_repo="Frogging-Family/wine-tkg-git"
-    tkg_proton_download_link=$(curl -s https://api.github.com/repos/${tkg_github_repo}/releases/latest | grep -P -o https\:\/\/.*\.release\.tar.xz | head -n 1)
+    tkg_proton_download_link=$(curl -s https://api.github.com/repos/${tkg_github_repo}/releases/latest | grep -P -o https\:\/\/.*\.release\.tar... | head -n 1)
     tkg_wine_download_link=$(curl -s https://api.github.com/repos/${tkg_github_repo}/releases/latest | grep -P -o https\:\/\/.\*\.zst | head -n 1)
 
-    if [ -d "/tmp/tkg" ]; then
+    if [[ -d "/tmp/tkg" ]]; then
         cd /tmp/tkg
     else
         mkdir /tmp/tkg && cd /tmp/tkg
@@ -206,11 +206,23 @@ update_tkg () {
     cd "$current_directory"
 }
 install_tkg_proton () {
+    local install_directory="/home/${USER}/.steam/root/compatibilitytools.d"
     curl -L -o proton-tkg.tar.xz $1
     mkdir Proton-TKG
-    tar xf proton-tkg.tar.xz -C Proton-TKG && rm proton-tkg.tar.xz
-    rm -rf ~/.steam/root/compatibilitytools.d/Proton-TKG
-    mv Proton-TKG ~/.steam/root/compatibilitytools.d/
+    tar xzf proton-tkg.tar.xz --directory="/tmp/tkg/Proton-TKG" --strip-components=1
+    rm proton-tkg.tar.xz
+
+    if [[ ! -d "$install_directory" ]]; then
+        mkdir -p "$install_directory"
+        printf "==> Steam compatibility tools directory missing. Created directory.\n"
+    fi
+
+    if [[ -d "$install_directory/Proton-TKG" ]]; then
+        rm -rf "$install_directory/Proton-TKG"
+        format_output "red" "==> Deleted old TKG folder"
+    fi
+
+    mv Proton-TKG "$install_directory"
     format_output "yellow" "Proton-TKG has been installed!"
 }
 install_tkg_wine () {
