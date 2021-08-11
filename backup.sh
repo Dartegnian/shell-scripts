@@ -13,10 +13,12 @@ cp -r ~/.config/cava/ ${backup_folder_location}/config/
 # cp -r ~/.config/ckb-next/ ${backup_folder_location}/config/
 cp -r ~/.config/compton/ ${backup_folder_location}/config/
 cp -r ~/.config/picom/ ${backup_folder_location}/config/
-cp -r ~/.config/dunst/ ${backup_folder_location}/config/
-cp -r ~/.config/nomacs/ ${backup_folder_location}/config/
+# cp -Lr ~/.config/dunst/ ${backup_folder_location}/config/
+# cp -r ~/.config/nomacs/ ${backup_folder_location}/config/
+cp -r ~/.config/mpv/ ${backup_folder_location}/config/
 cp -r ~/.config/rofi/ ${backup_folder_location}/config/
 cp -r ~/.config/sxhkd/ ${backup_folder_location}/config/
+cp -r ~/.config/wal/ ${backup_folder_location}/config/
 cp ~/.config/alsa/asoundrc/asound.conf ${backup_folder_location}/pulseaudio/
 cp ~/.config/tmux/tmux.conf ${backup_folder_location}/config/tmux/tmux.conf
 rsync -av --exclude="/plugins" ~/.config/ranger/ ${backup_folder_location}/config/ranger/ &> /dev/null
