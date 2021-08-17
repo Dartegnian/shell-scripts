@@ -9,7 +9,7 @@ backup_folder_location="${git_directory}/${device_category}/${distro_name}-${com
 # User configs
 cp -r ~/.config/alacritty/ ${backup_folder_location}/config/
 cp -r  ~/.config/bspwm/ ${backup_folder_location}/config/
-cp -r ~/.config/cava/ ${backup_folder_location}/config/
+# cp -r ~/.config/cava/ ${backup_folder_location}/config/
 # cp -r ~/.config/ckb-next/ ${backup_folder_location}/config/
 cp -r ~/.config/compton/ ${backup_folder_location}/config/
 cp -r ~/.config/picom/ ${backup_folder_location}/config/
