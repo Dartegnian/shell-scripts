@@ -233,11 +233,16 @@ install_tkg_wine () {
 update_tmux () {
     printf "==> Updating Tmux plugins via TPM\n"
     if [ -d ~/.tmux/plugins/tpm/bin/ ]; then
-        sh ~/.tmux/plugins/tpm/bin/update_plugins all
-        format_output "yellow" "Your Tmux plugins are now up to date!"
+	update_tpm "~/.tmux"
+    elif [ -d ~/.config/tmux/plugins/tpm/bin/ ]; then
+	update_tpm "/home/$USER/.config/tmux"
     else
         format_output "red" "Tmux Plugin Manager not found\n"
     fi
+}
+update_tpm () {
+    sh "$1/plugins/tpm/bin/update_plugins" all
+    format_output "yellow" "Your Tmux plugins are now up to date!"
 }
 update_everything () {
     format_output "yellow" "==> Updating entire system"
