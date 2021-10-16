@@ -41,6 +41,7 @@ cp /etc/nginx/nginx.conf ${backup_folder_location}/nginx/
 cp /etc/pulse/daemon.conf ${backup_folder_location}/pulseaudio/
 cp /etc/asound.conf ${backup_folder_location}/pulseaudio/
 cp /etc/default/grub ${backup_folder_location}/grub/
+cp /etc/makepkg.conf ${backup_folder_location}/makepkg/
 cp /etc/mkinitcpio.conf ${backup_folder_location}/mkinitcpio/
 cp /etc/pacman.conf ${backup_folder_location}/pacman/
 cp -R /etc/pacman.d/hooks ${backup_folder_location}/pacman/
