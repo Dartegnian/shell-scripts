@@ -4,8 +4,8 @@ print_memory_status() {
 	local total_memory=$(grep MemTotal /proc/meminfo | grep -o -P "\d{1,}")
 	local available_memory=$(grep MemAvailable /proc/meminfo | grep -o -P "\d{1,}")
 
-	printf "\ntotal real memory         = ${total_memory}\n"
-	echo "total available memory    = ${available_memory}"
+	printf "\ntotal real memory        = ${total_memory}\n"
+	echo "total available memory   = ${available_memory}"
 }
 print_os_info() {
 	local os_name=$(uname -o)
