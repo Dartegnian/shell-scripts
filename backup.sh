@@ -49,6 +49,8 @@ cp /etc/mkinitcpio.conf ${etc_folder_location}/mkinitcpio/
 cp /etc/pacman.conf ${etc_folder_location}/pacman/
 cp -R /etc/pacman.d/hooks ${etc_folder_location}/pacman/
 cp /etc/xdg/reflector/reflector.conf ${etc_folder_location}/reflector/
+cp -R /etc/pam.d/login ${etc_folder_location}/pam.d/
+cp /etc/ntp.conf ${etc_folder_location}/ntp/
 
 # GNU/Linux + AUR packages
 paru -Qq > ${backup_folder_location}/gloriousArchPackages.txt
