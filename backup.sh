@@ -5,36 +5,38 @@ device_category="pc"
 distro_name=$(cat /etc/*-release | grep DISTRIB_ID.* | grep -o -P "[^DISTRIB_ID=].*" | sed 's/"//g'| awk '{print tolower($0)}')
 computer_name="main-pc"
 backup_folder_location="${git_directory}/${device_category}/${distro_name}-${computer_name}"
+conf_folder_location="${backup_folder_location}/config"
 etc_folder_location="${backup_folder_location}/etc"
+misc_folder_location="${backup_folder_location}/misc"
 
 # User configs
-cp -r ~/.config/alacritty/ ${backup_folder_location}/config/
-cp -r  ~/.config/bspwm/ ${backup_folder_location}/config/
-# cp -r ~/.config/cava/ ${backup_folder_location}/config/
-# cp -r ~/.config/ckb-next/ ${backup_folder_location}/config/
-cp -r ~/.config/compton/ ${backup_folder_location}/config/
-cp -r ~/.config/picom/ ${backup_folder_location}/config/
-# cp -Lr ~/.config/dunst/ ${backup_folder_location}/config/
-# cp -r ~/.config/nomacs/ ${backup_folder_location}/config/
-cp -r ~/.config/mpv/ ${backup_folder_location}/config/
-cp -r ~/.config/rofi/ ${backup_folder_location}/config/
-cp -r ~/.config/sxhkd/ ${backup_folder_location}/config/
-cp -r ~/.config/wal/ ${backup_folder_location}/config/
+cp -r ~/.config/alacritty/ ${conf_folder_location}/
+cp -r  ~/.config/bspwm/ ${conf_folder_location}/
+# cp -r ~/.config/cava/ ${conf_folder_location}/
+# cp -r ~/.config/ckb-next/ ${conf_folder_location}/
+cp -r ~/.config/compton/ ${conf_folder_location}/
+cp -r ~/.config/picom/ ${conf_folder_location}/
+# cp -Lr ~/.config/dunst/ ${conf_folder_location}/
+# cp -r ~/.config/nomacs/ ${conf_folder_location}/
+cp -r ~/.config/mpv/ ${conf_folder_location}/
+cp -r ~/.config/rofi/ ${conf_folder_location}/
+cp -r ~/.config/sxhkd/ ${conf_folder_location}/
+cp -r ~/.config/wal/ ${conf_folder_location}/
 cp ~/.config/alsa/asoundrc/asound.conf ${etc_folder_location}/pulseaudio/
-cp ~/.config/tmux/tmux.conf ${backup_folder_location}/config/tmux/tmux.conf
-rsync -av --exclude="/plugins" ~/.config/ranger/ ${backup_folder_location}/config/ranger/ &> /dev/null
-rsync -av --exclude=".*" ~/.config/polybar/ ${backup_folder_location}/config/polybar/ &> /dev/null
+cp ~/.config/tmux/tmux.conf ${conf_folder_location}/tmux/tmux.conf
+rsync -av --exclude="/plugins" ~/.config/ranger/ ${conf_folder_location}/ranger/ &> /dev/null
+rsync -av --exclude=".*" ~/.config/polybar/ ${conf_folder_location}/polybar/ &> /dev/null
 
 # MPD
-cp ~/.config/mpd/mpd.conf ${backup_folder_location}/config/mpd/
-cp ~/.config/ncmpcpp/config ${backup_folder_location}/config/ncmpcpp/
-cp ~/.config/mpDris2/mpDris2.conf ${backup_folder_location}/config/mpDris2/
-cp ~/.config/mpDris2/mpDris2.conf ${backup_folder_location}/config/mpDris2/
-cp ~/.config/miniplayer/config ${backup_folder_location}/config/miniplayer/
+cp ~/.config/mpd/mpd.conf ${conf_folder_location}/mpd/
+cp ~/.config/ncmpcpp/config ${conf_folder_location}/ncmpcpp/
+cp ~/.config/mpDris2/mpDris2.conf ${conf_folder_location}/mpDris2/
+cp ~/.config/mpDris2/mpDris2.conf ${conf_folder_location}/mpDris2/
+cp ~/.config/miniplayer/config ${conf_folder_location}/miniplayer/
 
 # Zsh
-cp ~/.config/zsh/.zshrc ${backup_folder_location}/config/zsh/
-rsync -av --exclude=".*" ~/.config/zsh/sources/ ${backup_folder_location}/config/zsh/sources/ &> /dev/null
+cp ~/.config/zsh/.zshrc ${conf_folder_location}/zsh/
+rsync -av --exclude=".*" ~/.config/zsh/sources/ ${conf_folder_location}/zsh/sources/ &> /dev/null
 
 # System-wide configs
 cp /etc/X11/xorg.conf ${etc_folder_location}/X.Org/
@@ -53,4 +55,4 @@ paru -Qq > ${backup_folder_location}/gloriousArchPackages.txt
 paru -Qqe > ${backup_folder_location}/gloriousUserPackages.txt
 
 # NPM packages
-npm list -g --depth=0 --parseable=true | sed -n -e 's/^.*node_modules\///p' > ${backup_folder_location}/npm/globalPackages.txt
+npm list -g --depth=0 --parseable=true | sed -n -e 's/^.*node_modules\///p' > ${misc_folder_location}/npm/globalPackages.txt
