@@ -5,6 +5,7 @@ device_category="pc"
 distro_name=$(cat /etc/*-release | grep DISTRIB_ID.* | grep -o -P "[^DISTRIB_ID=].*" | sed 's/"//g'| awk '{print tolower($0)}')
 computer_name="main-pc"
 backup_folder_location="${git_directory}/${device_category}/${distro_name}-${computer_name}"
+etc_folder_location="${backup_folder_location}/etc"
 
 # User configs
 cp -r ~/.config/alacritty/ ${backup_folder_location}/config/
@@ -19,7 +20,7 @@ cp -r ~/.config/mpv/ ${backup_folder_location}/config/
 cp -r ~/.config/rofi/ ${backup_folder_location}/config/
 cp -r ~/.config/sxhkd/ ${backup_folder_location}/config/
 cp -r ~/.config/wal/ ${backup_folder_location}/config/
-cp ~/.config/alsa/asoundrc/asound.conf ${backup_folder_location}/pulseaudio/
+cp ~/.config/alsa/asoundrc/asound.conf ${etc_folder_location}/pulseaudio/
 cp ~/.config/tmux/tmux.conf ${backup_folder_location}/config/tmux/tmux.conf
 rsync -av --exclude="/plugins" ~/.config/ranger/ ${backup_folder_location}/config/ranger/ &> /dev/null
 rsync -av --exclude=".*" ~/.config/polybar/ ${backup_folder_location}/config/polybar/ &> /dev/null
@@ -36,16 +37,16 @@ cp ~/.config/zsh/.zshrc ${backup_folder_location}/config/zsh/
 rsync -av --exclude=".*" ~/.config/zsh/sources/ ${backup_folder_location}/config/zsh/sources/ &> /dev/null
 
 # System-wide configs
-cp /etc/X11/xorg.conf ${backup_folder_location}/X.Org/
-cp /etc/nginx/nginx.conf ${backup_folder_location}/nginx/
-cp /etc/pulse/daemon.conf ${backup_folder_location}/pulseaudio/
-cp /etc/asound.conf ${backup_folder_location}/pulseaudio/
-cp /etc/default/grub ${backup_folder_location}/grub/
-cp /etc/makepkg.conf ${backup_folder_location}/makepkg/
-cp /etc/mkinitcpio.conf ${backup_folder_location}/mkinitcpio/
-cp /etc/pacman.conf ${backup_folder_location}/pacman/
-cp -R /etc/pacman.d/hooks ${backup_folder_location}/pacman/
-cp /etc/xdg/reflector/reflector.conf ${backup_folder_location}/reflector/
+cp /etc/X11/xorg.conf ${etc_folder_location}/X.Org/
+cp /etc/nginx/nginx.conf ${etc_folder_location}/nginx/
+cp /etc/pulse/daemon.conf ${etc_folder_location}/pulseaudio/
+cp /etc/asound.conf ${etc_folder_location}/pulseaudio/
+cp /etc/default/grub ${etc_folder_location}/grub/
+cp /etc/makepkg.conf ${etc_folder_location}/makepkg/
+cp /etc/mkinitcpio.conf ${etc_folder_location}/mkinitcpio/
+cp /etc/pacman.conf ${etc_folder_location}/pacman/
+cp -R /etc/pacman.d/hooks ${etc_folder_location}/pacman/
+cp /etc/xdg/reflector/reflector.conf ${etc_folder_location}/reflector/
 
 # GNU/Linux + AUR packages
 paru -Qq > ${backup_folder_location}/gloriousArchPackages.txt
