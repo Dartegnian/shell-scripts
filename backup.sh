@@ -39,6 +39,7 @@ cp ~/.config/zsh/.zshrc ${conf_folder_location}/zsh/
 rsync -av --exclude=".*" ~/.config/zsh/sources/ ${conf_folder_location}/zsh/sources/ &> /dev/null
 
 # System-wide configs
+cp /etc/fstab ${etc_folder_location}/fstab/
 cp /etc/X11/xorg.conf ${etc_folder_location}/X.Org/
 cp /etc/nginx/nginx.conf ${etc_folder_location}/nginx/
 cp /etc/pulse/daemon.conf ${etc_folder_location}/pulseaudio/
