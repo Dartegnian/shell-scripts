@@ -32,7 +32,11 @@ set_source_mute_status() {
 	send_desktop_notification "$mute_action_type" "$3"
 }
 send_desktop_notification() {
-	notify-send "Your microphone was $1" "The device $2 was $1"
+	local header="Your microphone was $1"
+	local description="The device $2 was $1"
+
+	notify-send "$header" "$description"
+	echo $description
 }
 main() {
 	query_pulseaudio
