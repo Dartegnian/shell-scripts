@@ -32,8 +32,15 @@ print_copyrights() {
 }
 print_welcome_message() {
 	local os_name=$(uname -o)
-	local host_name=$(hostname)
+	local host_name=""
 	local architecture=$(uname -m)
+
+	if [[ ! $(which hostname) == "not found" ]]; then
+		host_name=$(echo /etc/hostname)
+	else
+		host_name=$(hostname)
+	fi
+
 	printf "\nWelcome to the ${os_name} ${architecture} System\n"
 	printf "System name: ${host_name}\n"
 }
