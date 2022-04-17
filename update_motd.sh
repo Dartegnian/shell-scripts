@@ -35,7 +35,9 @@ print_welcome_message() {
 	local host_name=""
 	local architecture=$(uname -m)
 
-	if [[ ! $(which hostname) == "not found" ]]; then
+	if [[ $(which hostname) == *"not found"* ]]; then
+		host_name=$(echo /etc/hostname)
+	elif [[ $(which hostname) == *"no hostname"* ]]; then
 		host_name=$(echo /etc/hostname)
 	else
 		host_name=$(hostname)
