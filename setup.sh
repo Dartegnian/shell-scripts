@@ -28,6 +28,8 @@ restore_gnu_stow() {
 		stow $folder -t ~/
 	done
 
+	chmod +x ~/.config/bspwm/*
+
 	cd "$context"
 }
 
