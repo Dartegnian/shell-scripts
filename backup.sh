@@ -10,19 +10,10 @@ etc_folder_location="${backup_folder_location}/etc"
 misc_folder_location="${backup_folder_location}/misc"
 
 # User configs
-cp -r ~/.config/alacritty/ ${conf_folder_location}/
-cp -r  ~/.config/bspwm/ ${conf_folder_location}/
-# cp -r ~/.config/cava/ ${conf_folder_location}/
-# cp -r ~/.config/ckb-next/ ${conf_folder_location}/
-cp -r ~/.config/compton/ ${conf_folder_location}/
-cp -r ~/.config/picom/ ${conf_folder_location}/
+# cp -r ~/.config/compton/ ${conf_folder_location}/
 # cp -Lr ~/.config/dunst/ ${conf_folder_location}/
-# cp -r ~/.config/nomacs/ ${conf_folder_location}/
 cp -r ~/.config/mpv/ ${conf_folder_location}/
 cp -r ~/.config/rofi/ ${conf_folder_location}/
-cp -r ~/.config/sxhkd/ ${conf_folder_location}/
-cp -r ~/.config/wal/ ${conf_folder_location}/
-cp ~/.config/alsa/asoundrc/asound.conf ${etc_folder_location}/pulseaudio/
 cp ~/.config/tmux/tmux.conf ${conf_folder_location}/tmux/tmux.conf
 rsync -av --exclude="/plugins" ~/.config/ranger/ ${conf_folder_location}/ranger/ &> /dev/null
 rsync -av --exclude=".*" ~/.config/polybar/ ${conf_folder_location}/polybar/ &> /dev/null
@@ -30,9 +21,6 @@ rsync -av --exclude=".*" ~/.config/polybar/ ${conf_folder_location}/polybar/ &> 
 # MPD
 cp ~/.config/mpd/mpd.conf ${conf_folder_location}/mpd/
 cp ~/.config/ncmpcpp/config ${conf_folder_location}/ncmpcpp/
-cp ~/.config/mpDris2/mpDris2.conf ${conf_folder_location}/mpDris2/
-cp ~/.config/mpDris2/mpDris2.conf ${conf_folder_location}/mpDris2/
-cp ~/.config/miniplayer/config ${conf_folder_location}/miniplayer/
 
 # Zsh
 cp ~/.config/zsh/.zshrc ${conf_folder_location}/zsh/
