@@ -1,4 +1,4 @@
-#! /bin/sh
+#! /usr/bin/env bash
 
 print_memory_status() {
 	local total_memory=$(grep MemTotal /proc/meminfo | grep -o -P "\d{1,}")
@@ -61,7 +61,7 @@ print_welcome_message() {
 	printf "System name: ${host_name}\n"
 
 	if [[ ! -z "$1" ]]; then
-		local days_remaining=$(sh ~/SYGtech/goteki-git/shell-scripts/mortality.sh -d)
+		local days_remaining=$(bash ~/SYGtech/goteki-git/shell-scripts/mortality.sh -d)
 		printf "Days: ${days_remaining}\n"
 	fi
 		

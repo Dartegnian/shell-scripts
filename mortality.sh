@@ -1,4 +1,4 @@
-#! /bin/sh
+#! /usr/bin/env bash
 
 date_today=$(date +'%Y-%m-%d')
 death_date='2034-01-19'
