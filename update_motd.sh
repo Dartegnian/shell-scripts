@@ -42,9 +42,19 @@ print_copyrights() {
 	printf "Copyright (c) 1998-2021 Free Software Foundation, Inc.\n"
 	printf "All Rights Reserved\n"
 }
+get_hostname() {
+	local cat_hostname=$(cat /etc/hostname)
+	local command_hostname=$(hostname)
+
+	if [[ -z $command_hostname ]]; then
+		echo $command_hostname
+	else
+		echo $cat_hostname
+	fi
+}
 print_welcome_message() {
 	local os_name=$(uname -o)
-	local host_name=$(cat /etc/hostname)
+	local host_name=$(get_hostname)
 	local architecture=$(uname -m)
 
 	printf "\nWelcome to the ${os_name} ${architecture} System\n"
