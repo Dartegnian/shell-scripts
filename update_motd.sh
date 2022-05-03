@@ -46,7 +46,7 @@ get_hostname() {
 	local cat_hostname=$(cat /etc/hostname)
 	local command_hostname=$(hostname)
 
-	if [[ -z $command_hostname ]]; then
+	if [[ ! -z $command_hostname ]]; then
 		echo $command_hostname
 	else
 		echo $cat_hostname
