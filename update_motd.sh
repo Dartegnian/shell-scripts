@@ -37,6 +37,12 @@ print_welcome_message() {
 
 	printf "\nWelcome to the ${os_name} ${architecture} System\n"
 	printf "System name: ${host_name}\n"
+
+	if [[ ! -z "$1" ]]; then
+		local days_remaining=$(sh ~/SYGtech/goteki-git/shell-scripts/mortality.sh -d)
+		printf "Days: ${days_remaining}\n"
+	fi
+		
 }
 print_user_login_info() {
 	printf "\nConsole Login: ${USER}\n"
@@ -53,7 +59,7 @@ main() {
 	print_os_info
 	print_copyrights
 	# print_system_node
-	print_welcome_message
+	print_welcome_message "days"
 	print_user_login_info
 	print_os_info "user"
 	print_last_login
