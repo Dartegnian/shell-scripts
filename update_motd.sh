@@ -7,17 +7,29 @@ print_memory_status() {
 	printf "\ntotal real memory        = ${total_memory}\n"
 	echo "total available memory   = ${available_memory}"
 }
+get_os_release() {
+	local distrib_release=$(cat /etc/*-release | grep -o -P DISTRIB_RELEASE.* | grep -o -P '[^DISTRIB_RELEASE="].*[^"]')
+	local version_id=$(cat /etc/*-release | grep -o -P VERSION_ID.* | grep -o -P '[^VERSION_ID="].*[^"]')
+	
+	if [[ ! -d $distrib_release ]]; then
+		echo $distrib_release
+	elif [[ ! -d $version_id ]]; then
+		echo $version_id
+	fi
+}
 print_os_info() {
 	local os_name=$(uname -o)
 	local os_distro=$(cat /etc/*-release | grep PRETTY_NAME.*)
 	local os_version=$(uname -r | grep -o -P "\d{1,}.\d{1,}.\d{1,}")
 	os_distro=${os_distro/PRETTY_NAME=/}
+	local os_release=$(get_os_release)
 
 	printf "\n"
 	if [[ "$1" != "user" ]]; then
 		printf "${os_name} "
 	fi
-	printf "${os_distro//\"/} Rolling Release Version ${os_version}\n"
+
+	printf "${os_distro//\"/} Release ${os_release^} Version ${os_version}\n"
 }
 print_system_node() {
 	local node=$(uname -n)
