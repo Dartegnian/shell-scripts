@@ -11,9 +11,9 @@ get_os_release() {
 	local distrib_release=$(cat /etc/*-release | grep -o -P DISTRIB_RELEASE.* | grep -o -P '[^DISTRIB_RELEASE="].*[^"]')
 	local version_id=$(cat /etc/*-release | grep -o -P VERSION_ID.* | grep -o -P '[^VERSION_ID="].*[^"]')
 	
-	if [[ ! -d $distrib_release ]]; then
+	if [[ ! -z $distrib_release ]]; then
 		echo $distrib_release
-	elif [[ ! -d $version_id ]]; then
+	elif [[ ! -z $version_id ]]; then
 		echo $version_id
 	fi
 }
