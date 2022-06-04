@@ -16,6 +16,10 @@ take_screenshot() {
 		params="-m 10 -f png"
 		file_suffix="-screen.png"
 		location="/home/$USER/Pictures/Saved Folders/Screenshots/Arch Linux"
+	elif [[ $1 == "screen-temp" ]]; then
+		params="-m 10 -f png"
+                file_suffix="-screenshot.png"
+                location="/tmp"
 	elif [[ $1 == "area" ]]; then
 		params="-s -m 10 -f png"
 		file_suffix="-screencap.png"
@@ -25,7 +29,7 @@ take_screenshot() {
 	local file_name="${timestamp}-${os_name}-${kernel_name}-${file_suffix}"
 
 	maim $params "$location"/$file_name
-	sleep 0.25
+	sleep 0.5
 	xclip -selection clipboard -t image/png "$location"/$file_name
 }
 
