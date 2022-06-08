@@ -8,33 +8,25 @@ computer_name="main-pc"
 backup_folder_location="${git_directory}/${device_category}/${distro_name}-${computer_name}"
 conf_folder_location="${backup_folder_location}/config"
 
-restore_gnu_stow() {
-	programs=(
-		alacritty
-		alsa
-		bspwm
-		ckb-next
-		miniplayer
-		mpDris2
-		nomacs
-		picom
-		sxhkd
-		wal
-	)
+programs=(
+	alacritty
+	alsa
+	bspwm
+	ckb-next
+	miniplayer
+	mpDris2
+	nomacs
+	picom
+	sxhkd
+	wal
+)
 
-	cd ${conf_folder_location}
+cd ${conf_folder_location}
 
-	for folder in ${programs[@]}; do
-		stow $folder -t ~/
-	done
+for folder in "${programs[@]}"; do
+	stow $folder -t ~/
+done
 
-	chmod +x ~/.config/bspwm/*
+chmod +x ~/.config/bspwm/*
 
-	cd "$context"
-}
-
-main() {
-	restore_gnu_stow
-}
-
-main
+cd "$context"
