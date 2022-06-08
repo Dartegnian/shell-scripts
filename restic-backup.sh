@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 
-restic_backup() {
+function restic_backup() {
 	local directories=(
 		"/mnt/hdd1/[DATA]/SFX/SFX"
 		"/mnt/hdd2/[DATA]/Adobe PSD"
@@ -17,11 +17,11 @@ restic_backup() {
 		restic backup "--tag=${tags[i]}" "${directories[i]}"
 	done
 }
-restic_cleanup() {
+function restic_cleanup() {
 	local snapshot_amount="2"
 	restic forget --keep-last $snapshot_amount --prune
 }
-main() {
+function main() {
 	if [[ $USER == "root" ]]; then
 		source /etc/restic-env
 		restic_backup

@@ -1,13 +1,13 @@
 #! /usr/bin/env bash
 
-print_memory_status() {
+function print_memory_status() {
 	local total_memory=$(grep MemTotal /proc/meminfo | grep -o -P "\d{1,}")
 	local available_memory=$(grep MemAvailable /proc/meminfo | grep -o -P "\d{1,}")
 
 	printf "\ntotal real memory        = ${total_memory}\n"
 	echo "total available memory   = ${available_memory}"
 }
-get_os_release() {
+function get_os_release() {
 	local distrib_release=$(cat /etc/*-release | grep -o -P DISTRIB_RELEASE.* | grep -o -P '[^DISTRIB_RELEASE="].*[^"]')
 	local version_id=$(cat /etc/*-release | grep -o -P VERSION_ID.* | grep -o -P '[^VERSION_ID="].*[^"]')
 	
@@ -17,7 +17,7 @@ get_os_release() {
 		echo $version_id
 	fi
 }
-print_os_info() {
+function print_os_info() {
 	local os_name=$(uname -o)
 	local os_distro=$(cat /etc/*-release | grep PRETTY_NAME.*)
 	local os_version=$(uname -r | grep -o -P "\d{1,}.\d{1,}.\d{1,}")
@@ -31,18 +31,18 @@ print_os_info() {
 
 	printf "${os_distro//\"/} Release ${os_release^} Version ${os_version}\n"
 }
-print_system_node() {
+function print_system_node() {
 	local node=$(uname -n)
 	printf "\nNode: ${node}\n"
 	printf "The system is coming up. Please wait.\n"
 	printf "The system is ready.\n\n"
 }
-print_copyrights() {
+function print_copyrights() {
 	printf "\nCopyright (c) 1991, 1992 Linus Torvalds\n"
 	printf "Copyright (c) 1998-2021 Free Software Foundation, Inc.\n"
 	printf "All Rights Reserved\n"
 }
-get_hostname() {
+function get_hostname() {
 	local cat_hostname=$(cat /etc/hostname)
 	local command_hostname=$(hostname)
 
@@ -52,7 +52,7 @@ get_hostname() {
 		echo $cat_hostname
 	fi
 }
-print_welcome_message() {
+function print_welcome_message() {
 	local os_name=$(uname -o)
 	local host_name=$(get_hostname)
 	local architecture=$(uname -m)
@@ -66,17 +66,17 @@ print_welcome_message() {
 	fi
 		
 }
-print_user_login_info() {
+function print_user_login_info() {
 	printf "\nConsole Login: ${USER}\n"
 	printf "Password: "
 }
-print_last_login() {
+function print_last_login() {
 	local last_login=$(last ${USER} -n 1 --time-format full | head -n 1 | xargs)
 	local login_date=$(grep -o -P "... ... *\d* ..:..:.." <<<${last_login} | head -n 1)
 	local terminal_name=$(awk '{print $2}' <<<${last_login})
 	echo "Last login: ${login_date} on ${terminal_name}"
 }
-main() {
+function main() {
 	print_memory_status
 	print_os_info
 	print_copyrights

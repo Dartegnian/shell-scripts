@@ -1,6 +1,6 @@
 #! /bin/sh
 
-query_pulseaudio() {
+function query_pulseaudio() {
 	local err_message=("No PulseAudio default source was found. Exiting." "Nothing was changed.")
 	local default_source="$(pactl info | grep -P 'Default Source')"
 	local mic_description=""
@@ -14,11 +14,11 @@ query_pulseaudio() {
 		notify-send "$err_message" "${err_message[1]}"
 	fi
 }
-query_microphone_mute_status() {
+function query_microphone_mute_status() {
 	local mute_status=$(pactl list sources | grep -A 6 $1 | tail -n 1 | xargs)
 	set_source_mute_status "${mute_status/Mute\: /}" "$1" "$2"
 }
-set_source_mute_status() {
+function set_source_mute_status() {
 	local mute_action_type=""
 
 	if [[ $1 == "yes" ]]; then
@@ -31,14 +31,14 @@ set_source_mute_status() {
 
 	send_desktop_notification "$mute_action_type" "$3"
 }
-send_desktop_notification() {
+function send_desktop_notification() {
 	local header="Your microphone was $1"
 	local description="The device $2 was $1"
 
 	notify-send "$header" "$description"
 	echo $description
 }
-main() {
+function main() {
 	query_pulseaudio
 }
 
