@@ -1,6 +1,6 @@
 #! /bin/sh
 
-format_output () {
+function format_output() {
     local red="\033[0;31m"
     local yellow="\033[1;33m"
     local no_color="\033[0m"
@@ -19,17 +19,17 @@ format_output () {
 }
 
 # input processors
-print_greeting () {
+function print_greeting() {
     printf "Which of the following do you want to update, ${USER^}?\n"
     printf "Hint: Either type the highlighted letters below or the words themselves.\n"
     printf "GNU/[L]inux [N]ode.js [G]lobalNPMPackages [O]hMyZsh [T]KG T[M]ux [A]ll (except TKG) [E]xit\n\n"
 }
-read_command () {
+function read_command() {
     read -p "Update: " update_choice
     printf "\n"
     distinguish_command "$update_choice"
 }
-distinguish_command() {
+function distinguish_command() {
     local update_choice_length=${#1}
 
     if [ $update_choice_length == "1" ]; then
@@ -38,7 +38,7 @@ distinguish_command() {
         process_long_command "${1,,}"
     fi
 }
-process_short_command () {
+function process_short_command() {
     case $1 in
         l)
             update_gnulinux
@@ -69,7 +69,7 @@ process_short_command () {
             ;;
     esac
 }
-process_long_command () {
+function process_long_command() {
     case $1 in
         linux)
             update_gnulinux
@@ -108,8 +108,10 @@ process_long_command () {
 }
 
 # updaters
-update_gnulinux () {
+function update_gnulinux() {
     printf "==> Updating GNU/Linux and your packages\n"
+
+    sudo systemctl start reflector
     
     if [[ $(pacman -Qi paru) ]]; then
 	    paru -Syu --noconfirm
@@ -122,7 +124,7 @@ update_gnulinux () {
     remove_unused_pacman_packages
     format_output "yellow" "Your GNU/Linux system and packages are now up to date!"
 }
-remove_unused_pacman_packages () {
+function remove_unused_pacman_packages() {
     printf "==> Attempting to remove unused pacman packages\n"
     local unused_packages=$(sudo pacman -Qtdq)
     if [ -z $(echo "$unused_packages" | tail -n 1) ]; then
@@ -134,7 +136,7 @@ remove_unused_pacman_packages () {
         format_output "yellow" "Unused packages were removed."
     fi
 }
-update_node () {
+function update_node() {
     if [ -d /usr/share/nvm/ ]; then
         printf "==> Updating Node and NPM\n"
         . /usr/share/nvm/nvm.sh
@@ -147,7 +149,7 @@ update_node () {
         read_command
     fi
 }
-update_node_via_nvm () {
+function update_node_via_nvm() {
     local old_version=$(nvm current | sed -n -e 's/v//p')
     local versions=$(nvm ls-remote)
     wait
@@ -169,12 +171,12 @@ update_node_via_nvm () {
         format_output "yellow" "The Node.js v${latest_version} was installed!"
     fi
 }
-update_npm_global_packages () {
+function update_npm_global_packages() {
     printf "==> Updating your NPM global packages\n"
     npm update -g
     format_output "yellow" "Packages updated!"
 }
-update_oh_my_zsh () {
+function update_oh_my_zsh() {
     local current_directory=$(pwd)
     printf "==> Updating Oh My Zsh\n"
     if [ -d $XDG_DATA_HOME/oh-my-zsh ]; then
@@ -186,7 +188,7 @@ update_oh_my_zsh () {
     cd "$current_directory"
     format_output "yellow" "Oh My Zsh has been fast-forwarded to the latest commit!"
 }
-update_tkg () {
+function update_tkg() {
     local current_directory=$(pwd)
     printf "==> Updating/Installing TKG Proton and Wine\n"
     tkg_github_repo="Frogging-Family/wine-tkg-git"
@@ -200,12 +202,12 @@ update_tkg () {
     fi
 
     install_tkg_proton $tkg_proton_download_link
-    install_tkg_wine $tkg_wine_download_link
+    #install_tkg_wine $tkg_wine_download_link
 
     rm -rf /tmp/tkg
     cd "$current_directory"
 }
-install_tkg_proton () {
+function install_tkg_proton() {
     local install_directory="/home/${USER}/.steam/root/compatibilitytools.d"
     curl -L -o proton-tkg.tar.xz $1
     mkdir Proton-TKG
@@ -225,12 +227,12 @@ install_tkg_proton () {
     mv Proton-TKG "$install_directory"
     format_output "yellow" "Proton-TKG has been installed!"
 }
-install_tkg_wine () {
+function install_tkg_wine() {
     curl -L -o wine-tkg.zst $1
     sudo pacman -U wine-tkg.zst
     format_output "yellow" "Wine-TKG has been installed!"
 }
-update_tmux () {
+function update_tmux() {
     printf "==> Updating Tmux plugins via TPM\n"
     if [ -d ~/.tmux/plugins/tpm/bin/ ]; then
 	update_tpm "~/.tmux"
@@ -240,11 +242,11 @@ update_tmux () {
         format_output "red" "Tmux Plugin Manager not found\n"
     fi
 }
-update_tpm () {
+function update_tpm() {
     sh "$1/plugins/tpm/bin/update_plugins" all
     format_output "yellow" "Your Tmux plugins are now up to date!"
 }
-update_everything () {
+function update_everything() {
     format_output "yellow" "==> Updating entire system"
 
     update_gnulinux
@@ -259,17 +261,19 @@ update_everything () {
     
     format_output "yellow" "\nThe entire system is up-to-date!"
 }
-update_nothing () {
+function update_nothing() {
     printf "Cancelling update process.\n"
     printf "No changes to the system was made.\n"
     exit 1
 }
-update_not_sure () {
+function update_not_sure() {
     printf "Ummm... okay, let's do this again.\n"
     print_greeting
     read_command
 }
+function main() {
+	print_greeting
+	read_command
+}
 
-# main
-print_greeting
-read_command
+main
