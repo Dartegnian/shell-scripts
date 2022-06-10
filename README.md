@@ -10,7 +10,7 @@ State-of-the-art, performant, Excel-spreadsheet-driven script to backup all my p
 GAME MODE `ON`/`OFF` turns on GAME MODE™ for my Linux system.
 
 ### Maim screenshot taker
-Takes a screenshot with `maim` with `screen`, `screen-temp`, `area` as parameters.
+Takes a screenshot with `maim` with `--screen`/`-s`, `--screen-temp`/`-t`, `--area`/`-a` as parameters.
 
 ### Microphone toggler
 Toggles between muting and unmuting the default microphone source in PulseAudio and shows a desktop notification.
