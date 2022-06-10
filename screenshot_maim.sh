@@ -38,6 +38,7 @@ function decipher_params() {
 		-t|--screen-temp)
 			params="-m 10 -f png"
 			file_suffix="-screenshot.png"
+			location="/tmp"
 			take_screenshot
 			;;
 		-a|--area)
