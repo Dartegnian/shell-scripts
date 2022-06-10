@@ -19,6 +19,7 @@ programs=(
 	picom
 	sxhkd
 	wal
+	zsh
 )
 
 cd ${conf_folder_location}
