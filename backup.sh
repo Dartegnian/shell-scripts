@@ -46,4 +46,4 @@ paru -Qq > ${backup_folder_location}/gloriousArchPackages.txt
 paru -Qqe > ${backup_folder_location}/gloriousUserPackages.txt
 
 # NPM packages
-npm list -g --depth=0 --parseable=true | sed -n -e 's/^.*node_modules\///p' > ${misc_folder_location}/npm/globalPackages.txt
+npm list --location=global --depth=0 --parseable=true | sed -n -e 's/^.*node_modules\///p' > ${misc_folder_location}/npm/globalPackages.txt

@@ -173,7 +173,7 @@ function update_node_via_nvm() {
 }
 function update_npm_global_packages() {
     printf "==> Updating your NPM global packages\n"
-    npm update -g
+    npm update --location=global
     format_output "yellow" "Packages updated!"
 }
 function update_oh_my_zsh() {
