@@ -1,5 +1,8 @@
 #! /bin/sh
 
+script_directory="$( cd -- "$( dirname -- "${BASH_SOURCE[0]:-$0}"; )" &> /dev/null && pwd 2> /dev/null; )";
+export script_directory
+
 function query_pulseaudio() {
 	local err_message=("No PulseAudio default source was found. Exiting." "Nothing was changed.")
 	local default_source="$(pactl info | grep -P 'Default Source')"
@@ -24,9 +27,13 @@ function set_source_mute_status() {
 	if [[ $1 == "yes" ]]; then
 		pactl set-source-mute $2 false
 		mute_action_type="unmuted"
+		if [[ -f "/tmp/microphone-status-pid" ]]; then
+			remove_systray_icon
+		fi
 	else
 		pactl set-source-mute $2 true
 		mute_action_type="muted"
+		set_systray_icon
 	fi
 
 	send_desktop_notification "$mute_action_type" "$3"
@@ -37,6 +44,19 @@ function send_desktop_notification() {
 
 	notify-send "$header" "$description"
 	echo $description
+}
+function unmute_mic() {
+	sh "$script_directory/toggle_mic.sh"
+}
+export -f unmute_mic
+function remove_systray_icon() {
+	microphone_status_pid=$(cat /tmp/microphone-status-pid)
+	echo $microphone_status_pid
+	kill -9 $microphone_status_pid
+}
+function set_systray_icon() {
+	yad --notification --command='bash -c unmute_mic' --image="${script_directory}/assets/fa-microphone-slash.png" --listen &
+	echo $! > /tmp/microphone-status-pid
 }
 function main() {
 	query_pulseaudio
