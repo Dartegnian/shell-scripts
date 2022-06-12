@@ -24,12 +24,13 @@ function query_microphone_mute_status() {
 function set_source_mute_status() {
 	local mute_action_type=""
 
+	if [[ -f "/tmp/microphone-status-pid" ]]; then
+		remove_systray_icon
+	fi
+
 	if [[ $1 == "yes" ]]; then
 		pactl set-source-mute $2 false
 		mute_action_type="unmuted"
-		if [[ -f "/tmp/microphone-status-pid" ]]; then
-			remove_systray_icon
-		fi
 	else
 		pactl set-source-mute $2 true
 		mute_action_type="muted"
@@ -51,8 +52,8 @@ function unmute_mic() {
 export -f unmute_mic
 function remove_systray_icon() {
 	microphone_status_pid=$(cat /tmp/microphone-status-pid)
-	echo $microphone_status_pid
 	kill -9 $microphone_status_pid
+	rm /tmp/microphone-status-pid
 }
 function set_systray_icon() {
 	yad --notification --command='bash -c unmute_mic' --image="${script_directory}/assets/fa-microphone-slash.png" --listen &
