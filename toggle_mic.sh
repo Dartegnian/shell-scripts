@@ -1,5 +1,6 @@
-#! /bin/sh
-toggle_mic_script_directory="$( cd -- "$( dirname -- "${BASH_SOURCE[0]:-$0}"; )" &> /dev/null && pwd 2> /dev/null; )";
+#! /usr/bin/env bash
+
+toggle_mic_script_directory="$(cd -- "$(dirname -- "${BASH_SOURCE[0]:-$0}";)" &> /dev/null && pwd 2> /dev/null;)"
 export toggle_mic_script_directory
 
 function query_pulseaudio() {
