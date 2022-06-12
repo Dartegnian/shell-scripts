@@ -1,7 +1,6 @@
 #! /bin/sh
-
-script_directory="$( cd -- "$( dirname -- "${BASH_SOURCE[0]:-$0}"; )" &> /dev/null && pwd 2> /dev/null; )";
-export script_directory
+toggle_mic_script_directory="$( cd -- "$( dirname -- "${BASH_SOURCE[0]:-$0}"; )" &> /dev/null && pwd 2> /dev/null; )";
+export toggle_mic_script_directory
 
 function query_pulseaudio() {
 	local err_message=("No PulseAudio default source was found. Exiting." "Nothing was changed.")
@@ -47,7 +46,7 @@ function send_desktop_notification() {
 	echo $description
 }
 function unmute_mic() {
-	sh "$script_directory/toggle_mic.sh"
+	sh "$toggle_mic_script_directory/toggle_mic.sh"
 }
 export -f unmute_mic
 function remove_systray_icon() {
@@ -56,7 +55,7 @@ function remove_systray_icon() {
 	rm /tmp/microphone-status-pid
 }
 function set_systray_icon() {
-	yad --notification --command='bash -c unmute_mic' --image="${script_directory}/assets/fa-microphone-slash.png" --listen &
+	yad --notification --command='bash -c unmute_mic' --image="${toggle_mic_script_directory}/assets/fa-microphone-slash.png" --listen &
 	echo $! > /tmp/microphone-status-pid
 }
 function main() {
