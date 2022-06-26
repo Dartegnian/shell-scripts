@@ -16,7 +16,7 @@ function download_thread() {
 }
 function main() {
 	if [[ $1 ]]; then
-		download_thread
+		download_thread $1
 	else
 		print_usage
 	fi
