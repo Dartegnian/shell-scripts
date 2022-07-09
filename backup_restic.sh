@@ -9,6 +9,7 @@ function restic_backup() {
 		"/mnt/hdd1/Pictures/Cloud Pictures/"
 		"/mnt/hdd1/Pictures/Wallpapers/"
 		"/mnt/hdd1/Documents/Cloud Documents/"
+		"/mnt/hdd1/Videos/Cloud Videos/"
 	)
 
 	local tags=(
@@ -21,7 +22,9 @@ function restic_backup() {
 		"Documents"
 	)
 
+	echo "Backing up directories"
 	for i in "${!directories[@]}"; do
+		printf "\n\nBacking up directory ${directories[i]}\n"
 		restic backup "--tag=${tags[i]}" "${directories[i]}"
 	done
 }
