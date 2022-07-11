@@ -10,6 +10,7 @@ function restic_backup() {
 		"/mnt/hdd1/Pictures/Wallpapers/"
 		"/mnt/hdd1/Documents/Cloud Documents/"
 		"/mnt/hdd1/Videos/Cloud Videos/"
+		"/home/dartegnian/Public/KVM/macOS/OpenCore/"
 	)
 
 	local tags=(
@@ -20,6 +21,8 @@ function restic_backup() {
 		"Pictures"
 		"Wallpapers"
 		"Documents"
+		"Videos"
+		"OpenCore MacOS configurations"
 	)
 
 	echo "Backing up directories"
@@ -29,7 +32,7 @@ function restic_backup() {
 	done
 }
 function restic_cleanup() {
-	local snapshot_amount="2"
+	local snapshot_amount="10"
 	restic forget --keep-last $snapshot_amount --prune
 }
 function main() {
