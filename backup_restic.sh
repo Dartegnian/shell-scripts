@@ -10,7 +10,6 @@ function restic_backup() {
 		"/mnt/hdd1/Pictures/Wallpapers/"
 		"/mnt/hdd1/Documents/Cloud Documents/"
 		"/mnt/hdd1/Videos/Cloud Videos/"
-		"/home/dartegnian/Public/KVM/macOS/OpenCore/"
 	)
 
 	local tags=(
@@ -22,7 +21,6 @@ function restic_backup() {
 		"Wallpapers"
 		"Documents"
 		"Videos"
-		"OpenCore MacOS configurations"
 	)
 
 	echo "Backing up directories"
