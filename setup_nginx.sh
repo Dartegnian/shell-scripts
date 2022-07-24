@@ -86,14 +86,34 @@ server {
 EOF
 )
 	echo "You will be given a chance to review your configuration. Feel free to make edits."
-	sleep 2
+	sleep 5
 	echo "$config_details" > "/tmp/${project_name}.${project_tld}_$timestamp"
 	vi "/tmp/${project_name}.${project_tld}_$timestamp"
 	config_details=$(cat "/tmp/${project_name}.${project_tld}_$timestamp")
 
-	echo "Press Control+C now if you are unhappy with your config or you made a mistake with the earlier variables"
-	printf "\n\nSetting up site: ${project_name}.${project_tld}\n"
-	sleep 5
+	echo "Type 'No' you made a mistake with the earlier variables"
+}
+
+function check_if_proceed() {
+	local should_user_proceed=""
+
+	read -p "Are you okay with your configuration? [Y]es/[N]o: " should_user_proceed
+	should_user_proceed=${should_user_proceed,,}
+
+	case $should_user_proceed in
+		no)
+			exit 1
+			;;
+		n)
+			exit 1
+			;;
+		yes)
+			printf "\n\nSetting up site: ${project_name}.${project_tld}\n"
+			;;
+		y)
+			printf "\n\nSetting up site: ${project_name}.${project_tld}\n"
+			;;
+	esac
 }
 
 function make_logs() {
@@ -131,6 +151,7 @@ function main() {
 		check_user
 		project_location=$(realpath $1)
 		setup_configuration_info
+		check_if_proceed
 		make_logs
 		setup_nginx_and_hosts
 	else
