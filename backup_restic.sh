@@ -40,6 +40,7 @@ function main() {
 		restic_cleanup
 	else
 		echo "Re-run as root."
+		exit 1
 	fi
 }
 
