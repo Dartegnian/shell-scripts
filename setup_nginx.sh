@@ -45,13 +45,7 @@ function setup_ssl_configuration() {
 	fi
 }
 
-function setup_configuration_info() {
-	project_name=$(sed -e "s:.*/::" <<< ${project_location,,})
-
-	read -p "Type the TLD for your project (com, net, uwu, etc): " project_tld
-	
-	setup_ssl_configuration
-
+function setup_nginx_configuration() {
 	# DO NOT INDENT the following lines
 	config_details=$(cat << EOF
 # Redirect to HTTPS
@@ -85,6 +79,16 @@ server {
 }
 EOF
 )
+}
+
+function setup_configuration_info() {
+	project_name=$(sed -e "s:.*/::" <<< ${project_location,,})
+
+	read -p "Type the TLD for your project (com, net, uwu, etc): " project_tld
+	
+	setup_ssl_configuration
+	setup_nginx_configuration
+	
 	echo "You will be given a chance to review your configuration. Feel free to make edits."
 	sleep 5
 	echo "$config_details" > "/tmp/${project_name}.${project_tld}_$timestamp"
@@ -112,6 +116,10 @@ function check_if_proceed() {
 			;;
 		y)
 			printf "\n\nSetting up site: ${project_name}.${project_tld}\n"
+			;;
+		*)
+			printf "\n\nCommand not understood. Aborting.\n"
+			exit 1
 			;;
 	esac
 }
