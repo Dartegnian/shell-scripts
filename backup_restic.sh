@@ -4,7 +4,9 @@ function restic_backup() {
 	local directories=(
 		"/mnt/hdd1/[DATA]/SFX/SFX"
 		"/mnt/hdd2/[DATA]/Adobe PSD"
+		"/mnt/hdd1/[DATA]/Cloud Data"
 		"/mnt/hdd1/Pictures/Camera Roll/"
+		"/mnt/hdd1/Pictures/Saved Pictures/"
 		"/mnt/hdd1/Pictures/Saved Folders/Screenshots/"
 		"/mnt/hdd1/Pictures/Cloud Pictures/"
 		"/mnt/hdd1/Pictures/Wallpapers/"
@@ -15,7 +17,9 @@ function restic_backup() {
 	local tags=(
 		"Archives"
 		"PSDs"
+		"General Data HDD 1"
 		"Camera Roll"
+		"Saved Pictures"
 		"Screenshots"
 		"Pictures"
 		"Wallpapers"
