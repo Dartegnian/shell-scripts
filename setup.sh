@@ -1,4 +1,4 @@
-#! /bin/sh
+#! /usr/bin/env bash
 
 context=$(pwd)
 git_directory="/home/${USER}/SYGtech/goteki-git/darts-dots"

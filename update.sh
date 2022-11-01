@@ -1,4 +1,4 @@
-#! /bin/sh
+#! /usr/bin/env bash
 
 function format_output() {
     local red="\033[0;31m"

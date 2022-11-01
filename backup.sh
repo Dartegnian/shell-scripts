@@ -1,4 +1,4 @@
-#! /bin/sh
+#! /usr/bin/env bash
 
 git_directory="/home/${USER}/SYGtech/goteki-git/darts-dots"
 device_category="pc"
