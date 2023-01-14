@@ -3,11 +3,17 @@ Shell scripts for Unix-based systems, mostly for Linux.
 
 ## What's inside
 
+### Restic backup script
+`backup_restic.sh`
+
+A script for backing up my local folders onto my own cloud storage. Needs to be run as root
+
 ### Backup script
+`backup.sh`
+
 State-of-the-art, performant, Excel-spreadsheet-driven script to backup all my precious dotfiles without the need for me to manually transfer the configuration scripts to The Cloud™.
 
-### GAME MODE™
-GAME MODE `ON`/`OFF` turns on GAME MODE™ for my Linux system.
+Generally backs up configs that manually need to be copied (for now), like NPM packages, system packages.
 
 ### Maim screenshot taker
 Takes a screenshot with `maim` with `--screen`/`-s`, `--screen-temp`/`-t`, `--area`/`-a` as parameters.
@@ -24,3 +30,9 @@ Uploads configured folders and tags onto some cloud storage solution.
 ### Update script
 Thingamajig that updates your ((Arch)) Linux install and all the penguins inside. Written by me, for me, and probably only used by me. I'm trying my best in writing a shell script, okay? Hmph.
 
+
+## Deprecated
+
+
+### GAME MODE™
+GAME MODE `ON`/`OFF` turns on GAME MODE™ for my Linux system.
