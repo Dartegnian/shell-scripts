@@ -23,8 +23,8 @@ cp ~/.config/mpd/mpd.conf ${conf_folder_location}/mpd/
 cp ~/.config/ncmpcpp/config ${conf_folder_location}/ncmpcpp/
 
 # Zsh
-cp ~/.config/zsh/.zshrc ${conf_folder_location}/zsh/
-rsync -av --exclude=".*" ~/.config/zsh/sources/ ${conf_folder_location}/zsh/sources/ &> /dev/null
+#cp ~/.config/zsh/.zshrc ${conf_folder_location}/zsh/
+#rsync -av --exclude=".*" ~/.config/zsh/sources/ ${conf_folder_location}/zsh/sources/ &> /dev/null
 
 # System-wide configs
 cp /etc/fstab ${etc_folder_location}/fstab/
