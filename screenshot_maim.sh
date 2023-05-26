@@ -36,13 +36,13 @@ function decipher_params() {
 			take_screenshot
 			;;
 		-t|--screen-temp)
-			params="-m 10 -f png"
+			params="-m 4 -f png"
 			file_suffix="-screenshot.png"
 			location="/tmp"
 			take_screenshot
 			;;
 		-a|--area)
-			params="-s -m 10 -f png"
+			params="-s -m 4 -f png"
 			file_suffix="-screencap.png"
 			location="/tmp"
 			take_screenshot
