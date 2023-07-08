@@ -40,6 +40,7 @@ cp -R /etc/pacman.d/hooks ${etc_folder_location}/pacman/
 cp /etc/xdg/reflector/reflector.conf ${etc_folder_location}/reflector/
 cp -R /etc/pam.d/login ${etc_folder_location}/pam.d/
 cp /etc/ntp.conf ${etc_folder_location}/ntp/
+cp /usr/share/sddm/scripts/Xsetup ${etc_folder_location}/sddm/
 
 # GNU/Linux + AUR packages
 paru -Qq > ${backup_folder_location}/gloriousArchPackages.txt
