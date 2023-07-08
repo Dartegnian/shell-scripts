@@ -12,6 +12,7 @@ function restic_backup() {
 		"/mnt/hdd1/Pictures/Wallpapers/"
 		"/mnt/hdd1/Documents/Cloud Documents/"
 		"/mnt/hdd1/Videos/Cloud Videos/"
+		"/mnt/hdd1/Music/"
 	)
 
 	local tags=(
@@ -25,6 +26,7 @@ function restic_backup() {
 		"Wallpapers"
 		"Documents"
 		"Videos"
+		"Music"
 	)
 
 	echo "Backing up directories"

@@ -30,8 +30,8 @@ cp ~/.config/ncmpcpp/config ${conf_folder_location}/ncmpcpp/
 cp /etc/fstab ${etc_folder_location}/fstab/
 cp /etc/X11/xorg.conf ${etc_folder_location}/X.Org/
 cp /etc/nginx/nginx.conf ${etc_folder_location}/nginx/
-cp /etc/pulse/daemon.conf ${etc_folder_location}/pulseaudio/
-cp /etc/asound.conf ${etc_folder_location}/pulseaudio/
+cp /etc/pulse/daemon.conf ${etc_folder_location}/pulse/
+cp /etc/asound.conf ${etc_folder_location}/pulse/
 cp /etc/default/grub ${etc_folder_location}/grub/
 cp /etc/makepkg.conf ${etc_folder_location}/makepkg/
 cp /etc/mkinitcpio.conf ${etc_folder_location}/mkinitcpio/
