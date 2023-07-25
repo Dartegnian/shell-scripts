@@ -13,6 +13,9 @@ function restic_backup() {
 		"/mnt/hdd1/Documents/Cloud Documents/"
 		"/mnt/hdd1/Videos/Cloud Videos/"
 		"/mnt/hdd1/Music/"
+		"/home/dartegnian/SYGtech/icaras-interconnect/"
+		"/home/dartegnian/SYGtech/goteki-git/"
+		"/home/dartegnian/SYGtech/piranha-prototype/"
 	)
 
 	local tags=(
@@ -27,6 +30,9 @@ function restic_backup() {
 		"Documents"
 		"Videos"
 		"Music"
+		"SYG Icaras Backups"
+		"Git Clones"
+		"Production Sites"
 	)
 
 	echo "Backing up directories"
