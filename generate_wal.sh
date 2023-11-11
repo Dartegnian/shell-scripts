@@ -42,13 +42,10 @@ quinary=$color3
 senary=$color5
 septenary=$color2
 
-
 if [[ $darkman_setting == "light" ]]; then
-	rofi_config=$(sed "s/active-background\: #....../active-background\: ${primary}${60}/; s/selected-active-background\: #....../selected-active-background\: ${secondary}/" /home/dartegnian/.cache/wal/colors-rofi-light.rasi)
-	echo $rofi_config >/home/dartegnian/.cache/wal/colors-rofi-light.rasi
+    sed -i "s/\(active-background: #\)[0-9A-Fa-f]\{6\}/\1${primary:1}${transparency}/" /home/dartegnian/.cache/wal/colors-rofi-light.rasi
 else
-	rofi_config=$(sed "s/active-background\: #....../active-background\: ${primary}${transparency}/; s/selected-active-background\: #....../selected-active-background\: ${secondary}/" /home/dartegnian/.cache/wal/colors-rofi-dark.rasi)
-	echo $rofi_config >/home/dartegnian/.cache/wal/colors-rofi-dark.rasi
+    sed -i "s/\(active-background: #\)[0-9A-Fa-f]\{6\}/\1${primary:1}${transparency}/" /home/dartegnian/.cache/wal/colors-rofi-dark.rasi
 fi
 
 echo "#$transparency${primary/\#/}" >/home/dartegnian/.cache/wal/colors-polybar-bg-1
