@@ -2,6 +2,7 @@
 
 wallpaper=""
 darkman_setting=$(darkman get)
+printf "\n"
 
 if [[ $1 ]]; then
 	wallpaper=$1
@@ -10,25 +11,27 @@ else
 	wallpaper=$(grep -P "file=*" /home/dartegnian/.config/nitrogen/bg-saved.cfg -m 1)
 fi
 
-
 if [[ $2 ]]; then
 	if [[ $darkman_setting == "light" ]]; then
 		wal -tnql -i "${wallpaper/file=/}"
-		gsettings set org.gnome.desktop.interface color-scheme 'prefer-light'
 	else
-		gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
 		wal -tnq -i "${wallpaper/file=/}"
 	fi
 else
 	if [[ $darkman_setting == "light" ]]; then
 		wal -tnl -i "${wallpaper/file=/}"
-		gsettings set org.gnome.desktop.interface color-scheme 'prefer-light'
 	else
-		gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
 		wal -tn -i "${wallpaper/file=/}"
 	fi
 fi
 
+if [[ $darkman_setting == "light" ]]; then
+		gsettings set org.gnome.desktop.interface color-scheme 'prefer-light'
+else
+		gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
+fi
+
+xrdb -merge ~/.cache/wal/colors.Xresources
 killall -q dunst && (dunst -conf /home/dartegnian/.config/dunst/dunstrc >/dev/null 2>&1 &)
 
 source "${HOME}/.cache/wal/colors.sh"
@@ -60,7 +63,7 @@ echo "#$transparency${septenary/\#/}" >/home/dartegnian/.cache/wal/colors-polyba
 bspc config presel_feedback_color "$secondary"
 pywal-discord
 pywalfox update
-oomox-cli -o oomox-xresources -m all /opt/oomox/scripted_colors/xresources/xresources >/dev/null
+oomox-cli -o oomox-xresources-reverse -m all /opt/oomox/scripted_colors/xresources/xresources-reverse >/dev/null
     
 if [[ $(pacman -Qi wal-telegram) ]]; then
 	wal-telegram
