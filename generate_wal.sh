@@ -63,10 +63,10 @@ echo "#$transparency${septenary/\#/}" >/home/dartegnian/.cache/wal/colors-polyba
 bspc config presel_feedback_color "$secondary"
 pywal-discord
 pywalfox update
-oomox-cli -o oomox-xresources-reverse -m all /opt/oomox/scripted_colors/xresources/xresources-reverse >/dev/null
+oomox-cli -o oomox-xresources-reverse -m all /opt/oomox/scripted_colors/xresources/xresources-reverse
     
-if [[ $(pacman -Qi wal-telegram) ]]; then
-	wal-telegram
+if [[ $(pacman -Qi wal-telegram) && $darkman_setting == "dark" ]]; then
+    wal-telegram
 fi
 
 # notify wallpaper image set
