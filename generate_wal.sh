@@ -31,7 +31,7 @@ else
 		gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
 fi
 
-xrdb -merge ~/.cache/wal/colors.Xresources
+xrdb -merge "${HOME}/.cache/wal/colors.Xresources"
 killall -q dunst && (dunst -conf /home/dartegnian/.config/dunst/dunstrc >/dev/null 2>&1 &)
 
 source "${HOME}/.cache/wal/colors.sh"
@@ -63,7 +63,7 @@ echo "#$transparency${septenary/\#/}" >/home/dartegnian/.cache/wal/colors-polyba
 bspc config presel_feedback_color "$secondary"
 pywal-discord
 pywalfox update
-oomox-cli -o oomox-xresources-reverse -m all /opt/oomox/scripted_colors/xresources/xresources-reverse
+oomox-cli -o oomox-xresources-reverse -m all /opt/oomox/scripted_colors/xresources/xresources-reverse >/dev/null
     
 if [[ $(pacman -Qi wal-telegram) && $darkman_setting == "dark" ]]; then
     wal-telegram
