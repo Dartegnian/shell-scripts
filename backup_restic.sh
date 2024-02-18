@@ -47,6 +47,7 @@ function restic_cleanup() {
 }
 function main() {
 	if [[ $USER == "root" ]]; then
+		GOMAXPROCS=1
 		source /etc/restic-env
 		restic_backup
 		restic_cleanup
