@@ -6,7 +6,7 @@ Shell scripts for Unix-based systems, mostly for Linux.
 ### Restic backup script
 `backup_restic.sh`
 
-A script for backing up my local folders onto my own cloud storage. Needs to be run as root
+A script for backing up my local folders onto my own cloud storage. Needs to be run as root a d have the proper directories set up.
 
 ### Backup script
 `backup.sh`
