@@ -25,7 +25,7 @@ Toggles between muting and unmuting the default microphone source in PulseAudio 
 Configures the MOTD in my Linux system to mimic that of the startup messages in AT&T Unix System V because it looks cool.
 
 ### Restic file backup
-Uploads configured folders and tags onto some cloud storage solution.
+Uploads configured folders and tags onto some cloud storage solution. Must be configured via `/etc/restic-env`.
 
 ### Update script
 Thingamajig that updates your ((Arch)) Linux install and all the penguins inside. Written by me, for me, and probably only used by me. I'm trying my best in writing a shell script, okay? Hmph.
