@@ -11,7 +11,7 @@ A script for backing up my local folders onto my own cloud storage. It needs to 
 ### Backup script
 `backup.sh`
 
-State-of-the-art, performant, Excel-spreadsheet-driven script to backup all my precious dotfiles without the need for me to manually transfer the configuration scripts to The Cloud™.
+State-of-the-art, high-performant, Excel-spreadsheet-driven script to backup all my precious dotfiles without the need for me to manually transfer the configuration scripts to The Cloud™.
 
 Generally backs up configs that manually need to be copied (for now), like NPM packages, system packages.
 
