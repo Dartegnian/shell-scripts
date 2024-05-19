@@ -13,7 +13,7 @@ A script for backing up my local folders onto my own cloud storage. It needs to 
 
 State-of-the-art, high-performant, Excel-spreadsheet-driven script to backup all my precious dotfiles without the need for me to manually transfer the configuration scripts to The Cloud™.
 
-Generally backs up configs that manually need to be copied (for now), like NPM packages, system packages.
+Generally backs up configs that manually need to be copied (for now), like NPM packages, and system packages.
 
 ### Maim screenshot taker
 Takes a screenshot with `maim` with `--screen`/`-s`, `--screen-temp`/`-t`, `--area`/`-a` as parameters.
@@ -28,7 +28,7 @@ Configures the MOTD in my Linux system to mimic that of the startup messages in 
 Uploads configured folders and tags onto some cloud storage solution. Must be configured via `/etc/restic-env`.
 
 ### Update script
-Thingamajig that updates your ((Arch)) Linux install and all the penguins inside. Written by me, for me, and probably only used by me. I'm trying my best in writing a shell script, okay? Hmph.
+Thingamajig that updates your ((Arch)) Linux install and all the penguins inside. Written by me, for me, and probably only used by me. I'm trying my best to write a shell script, okay? Hmph.
 
 
 ## Deprecated
