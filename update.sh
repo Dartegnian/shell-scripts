@@ -22,7 +22,7 @@ function format_output() {
 function print_greeting() {
     printf "Which of the following do you want to update, ${USER^}?\n"
     printf "Hint: Either type the highlighted letters below or the words themselves.\n"
-    printf "GNU/[L]inux [N]ode.js [G]lobalNPMPackages [O]hMyZsh [T]KG T[M]ux [A]ll (except TKG) [E]xit\n\n"
+    printf "GNU/[L]inux [N]ode.js [G]lobalNPMPackages [O]hMyZsh T[M]ux [A]ll [E]xit\n\n"
 }
 function read_command() {
     read -p "Update: " update_choice
@@ -52,9 +52,9 @@ function process_short_command() {
         o)
             update_oh_my_zsh
             ;;
-        t)
-            update_tkg
-            ;;
+        # t)
+        #     update_tkg
+        #     ;;
         m)
             update_tmux
             ;;
@@ -264,7 +264,7 @@ function update_everything() {
 }
 function update_nothing() {
     printf "Cancelling update process.\n"
-    printf "No changes to the system was made.\n"
+    printf "No changes to the system were made.\n"
     exit 1
 }
 function update_not_sure() {
