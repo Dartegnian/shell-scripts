@@ -179,7 +179,7 @@ function update_npm_global_packages() {
 function update_oh_my_zsh() {
     # local current_directory=$(pwd)
     printf "==> Updating Oh My Zsh\n"
-    omz update
+    zsh -c "source $ZSH/oh-my-zsh.sh && omz update"
     # if [ -d $XDG_DATA_HOME/oh-my-zsh ]; then
 	#     cd $XDG_DATA_HOME/oh-my-zsh
     # else
