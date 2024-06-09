@@ -42,7 +42,7 @@ function restic_backup() {
 	done
 }
 function restic_cleanup() {
-	local snapshot_amount="10"
+	local snapshot_amount="15"
 	restic forget --keep-last $snapshot_amount --prune
 }
 function main() {
