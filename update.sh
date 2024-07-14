@@ -151,24 +151,27 @@ function update_node() {
 }
 function update_node_via_nvm() {
     local old_version=$(nvm current | sed -n -e 's/v//p')
-    local versions=$(nvm ls-remote)
+    local versions=$(nvm ls-remote --lts)
     wait
-    local latest_version=$(echo $versions | sed  -e 's/\s\+/\n/g' | tail -n 1 | grep -P -o "\d*\.\d*\.\d*")
+    local latest_version=$(echo "$versions" | grep -P -o "\d+\.\d+\.\d+" | tail -n 1)
 
-    if [ $old_version == $latest_version ]; then
+    echo "Current version: $old_version"
+    echo "Latest LTS version: $latest_version"
+
+    if [[ $old_version == $latest_version ]]; then
         format_output "yellow" "Your local version of Node.js is already up to date!"
     else
         format_output "red" "Your local version of Node.js is outdated."
-        printf "==> Installing the latest version of Node.js\n"
+        printf "==> Installing the latest LTS version of Node.js.\n"
         format_output "red" "WARNING: This will uninstall Node ${old_version} but keep your global NPM packages."
-        format_output "red" "WARNING: This also installs the a non-LTS version of Node.js.\n"
-        nvm install node
+        format_output "red" "WARNING: This also installs an LTS version of Node.js.\n"
+        nvm install node --lts
         nvm alias default node
         nvm reinstall-packages $old_version
         nvm uninstall $old_version
         nvm use default
         format_output "red" "WARNING: Node.js v${old_version} was uninstalled!"
-        format_output "yellow" "The Node.js v${latest_version} was installed!"
+        format_output "yellow" "The Node.js LTS v${latest_version} was installed!"
     fi
 }
 function update_npm_global_packages() {
