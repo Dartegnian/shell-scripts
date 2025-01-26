@@ -5,17 +5,18 @@ function restic_backup() {
 		"/mnt/hdd1/[DATA]/SFX/SFX"
 		"/mnt/hdd2/[DATA]/Adobe PSD"
 		"/mnt/hdd1/[DATA]/Cloud Data"
-		"/mnt/hdd1/Pictures/Camera Roll/"
-		"/mnt/hdd1/Pictures/Saved Pictures/"
-		"/mnt/hdd1/Pictures/Saved Folders/Screenshots/"
-		"/mnt/hdd1/Pictures/Cloud Pictures/"
-		"/mnt/hdd1/Pictures/Wallpapers/"
+		"/mnt/hdd2/Pictures/Camera Roll/"
+		"/mnt/hdd2/Pictures/Saved Pictures/"
+		"/mnt/hdd2/Pictures/Saved Folders/Screenshots/"
+		"/mnt/hdd2/Pictures/Cloud Pictures/"
+		"/mnt/hdd2/Pictures/Wallpapers/"
 		"/mnt/hdd1/Documents/Cloud Documents/"
-		"/mnt/hdd1/Videos/Cloud Videos/"
+		"/mnt/hdd2/Videos/Cloud Videos/"
 		"/mnt/hdd1/Music/"
 		"/home/dartegnian/SYGtech/icaras-interconnect/"
 		"/home/dartegnian/SYGtech/goteki-git/"
 		"/home/dartegnian/SYGtech/piranha-prototype/"
+		"/mnt/hdd/[DATA]/Cloud Data"
 	)
 
 	local tags=(
@@ -33,6 +34,7 @@ function restic_backup() {
 		"SYG Icaras Backups"
 		"Git Clones"
 		"Production Sites"
+		"General Data HDD 2"
 	)
 
 	echo "Backing up directories"
