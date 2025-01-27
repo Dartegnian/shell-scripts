@@ -10,13 +10,13 @@ function restic_backup() {
 		"/mnt/hdd2/Pictures/Saved Folders/Screenshots/"
 		"/mnt/hdd2/Pictures/Cloud Pictures/"
 		"/mnt/hdd2/Pictures/Wallpapers/"
-		"/mnt/hdd1/Documents/Cloud Documents/"
+		"/mnt/hdd2/Documents/Cloud Documents/"
 		"/mnt/hdd2/Videos/Cloud Videos/"
 		"/mnt/hdd1/Music/"
 		"/home/dartegnian/SYGtech/icaras-interconnect/"
 		"/home/dartegnian/SYGtech/goteki-git/"
 		"/home/dartegnian/SYGtech/piranha-prototype/"
-		"/mnt/hdd/[DATA]/Cloud Data"
+		"/mnt/hdd2/[DATA]/Cloud Data"
 	)
 
 	local tags=(
